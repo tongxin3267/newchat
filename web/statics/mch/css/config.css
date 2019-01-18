@@ -1,0 +1,42 @@
+html { font-family: sans-serif; }
+body { margin: 0px; }
+@font-face {
+	font-family: "Glyphicons Halflings";
+	src: url('glyphicons-halflings-regular.eot') format("embedded-opentype"), url('glyphicons-halflings-regular.woff2') format("woff2"), url('glyphicons-halflings-regular.woff') format("woff"), url('glyphicons-halflings-regular.ttf') format("truetype"), url('glyphicons-halflings-regular.svg') format("svg");
+}
+* { box-sizing: border-box; }
+*::after, *::before { box-sizing: border-box; }
+html { font-size: 10px; }
+body { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; line-height: 1.42857; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); }
+.text-center { text-align: center; }
+.clearfix::after, .clearfix::before { display: table; content: " "; }
+.clearfix::after { clear: both; }
+/* ::::: https://www.niaoyun.com/template/User/Niaoyun/PC/Static/css/common/common/bootstrap-theme-ny.min.css?v=25001 ::::: */
+body { font-family: "microsoft yahei"; }
+/* ::::: https://www.niaoyun.com/template/User/Niaoyun/PC/Static/css/common/common/ucCommon.css?v=32000 ::::: */
+
+body { min-width: 1200px; padding-top: 56px; padding-left: 168px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(77, 77, 77); font-size: 14px; }
+.margin-bottom-30 { margin-bottom: 30px ! important; }
+/* ::::: https://www.niaoyun.com/template/User/Niaoyun/PC/Static/css/common/common/ucComponent.css?v=25001 ::::: */
+.step-bar { position: relative; float: left; width: 33%; height: 36px; line-height: 36px; font-size: 12px; color: rgb(255, 255, 255); }
+.step-bar-begin { padding-right: 18px; }
+.step-bar-center { padding: 0px 18px; }
+.step-bar-end { padding-left: 18px; }
+.step-colored {
+	background-color: #F0F0F0;
+}
+.step--current .step-colored { background-color: rgb(0, 170, 255); color: rgb(255, 255, 255); }
+.step-arrow-left, .step-arrow-right { position: absolute; top: 0px; border-width: 18px; border-style: solid; border-color: transparent transparent transparent rgb(127, 221, 255); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; }
+.step-arrow-left { left: -8px; border-width: 18px; border-style: solid; border-color: rgb(127, 221, 255) rgb(127, 221, 255) rgb(127, 221, 255) transparent; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; }
+.step-arrow-right { right: -18px; }
+.step--current .step-arrow-right { border-left-color: rgb(0, 170, 255); }
+.step--current ~ .step-bar .step-colored { background-color: rgb(242, 242, 242); color: rgb(99, 101, 102); }
+.step--current ~ .step-bar .step-arrow-left { border-color: rgb(242, 242, 242) rgb(242, 242, 242) rgb(242, 242, 242) transparent; }
+.step--current ~ .step-bar .step-arrow-right { border-left-color: rgb(242, 242, 242); }
+/* ::::: https://www.niaoyun.com/template/User/Niaoyun/PC/Static/lib/plugin/jQuery/dialog/skins/usercenter.css?4.1.7 ::::: */
+
+body {  }
+/* ::::: https://www.niaoyun.com/template/User/Niaoyun/PC/Static/lib/plugin/jQuery/lightbox/css/lightbox.min.css ::::: */
+body::after { content: url('close.png') url('loading_001.gif') url('prev.png') url('next.png'); display: none; }
+/* ::::: https://www.niaoyun.com/template/User/Niaoyun/PC/Static/css/ucModule/verify/verifySteps.css?v=27200 ::::: */
+.margin-bottom-30 { margin-bottom: 30px; }

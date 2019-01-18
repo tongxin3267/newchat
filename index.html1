@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<meta charset="UTF-8">
+
+
+
+<title>微帮-1000万小微电商帮扶联盟</title>
+
+<meta name="keywords" content="免费小程序,微信小程序商城,小程序,小程序商城,小程序电商,电商小程序,微信小程序开发">
+<meta name="description" content="知名的小程序联盟,可一键生成微信商城小程序,极速生成微信小程序电商商城,功能丰富,运行稳定,操作便捷,帮您快速在微信获客,做电商选微帮。">
+
+
+
+<link media="all" href="home/css/index.css" type="text/css" rel="stylesheet">
+</head>
+<body class="cooperate-new-page">
+
+
+
+
+
+
+
+
+<div class="mod-topbar" style="display: block;">
+  <div class="layout-wrap" >
+    
+    	<div class="login xsLogin"><div class="xsRegister"> <span>●</span><a href="/web/index.php?r=admin%2Fpassport%2Flogin" rel="nofollow" title="注册&nbsp;/&nbsp;登录" class="plr5 loginLink">注册&nbsp;/&nbsp;登录</a> <span >5分钟注册，最快当天上线<i onClick="closeResTag(this)" class="iconfont icon-close"></i></span></div></div>
+  
+	微帮可以让您立即拥有自己的微信电商小程序！
+  </div>
+</div>
+
+
+<div class="mod-header">
+  <div class="layout-wrap">
+    <h1 class="logo"><a href="" title=""><img class="logo-img" src="home/images/main_logo_i.png" alt="微帮" title=""><img class="logo-txt" src="home/images/main_logo_t.png" alt="微帮" title=""></a></h1>
+     
+      
+        
+      
+      
+  </div>
+</div>
+
+<div class="mod-body">
+  <div class="mod-banner">
+        <h2 class="title">电商小程序</h2>
+        <p class="sub-title">拼团、秒杀、预约、刮刮卡、积分商城、砍价、快速下单、抽奖、供货商入驻、分销...功能强大,应有尽有</p>
+        
+         <p class="sub-title">淘宝、天猫、1688商品快速采集，闪电上架，别人10天的工作，用我们的电商小程序2小时完成。自主开店，买家货款T+1到账，省去货到付款资金占用期</p>
+</div>
+   
+    <div class="sect sect-marketing">
+      <div class="layout-wrap">
+
+            <div class="sect-header">
+                <h2 class="title">微信电商小程序</h2>
+                <p class="subtitle">中国已经成为世界最大的移动互联网市场</p>
+            </div>
+            <p class="text">
+            
+           <strong> 2018年</strong>抢占互联网下一波机会 ——新零售 新营销 新社交 微帮电商小程序助力传统企业电商转型   帮你打通最新型的社交营销渠道，<strong>5分钟</strong>创建属于你自己的电商小程序平台。
+        </p>
+            <p class="slogan">功能强大的电商小程序系统<br>
+                与您共创时代精彩</p>
+      </div>
+        <div class="wave-wrap" style="z-index:-1000;">
+      <div class="blue" data-offset="true" data-offsetx="10" style="left: 2.10116px;">
+                <div class="elem elem-1" data-offset="true" data-offsetx="20" data-offsety="20" style="left: 955.434px; top: 7.18342px;"></div>
+                <div class="elem elem-2" data-offset="true" data-offsetx="10" data-offsety="10" style="left: 953.466px; top: 3.50336px;"></div>
+                <div class="elem elem-3" data-offset="true" data-offsetx="10" data-offsety="10" style="left: 953.451px; top: 3.50336px;"></div>
+          </div>
+            <div class="green" data-offset="true" data-offsetx="20" style="left: 4.0523px;">
+                <div class="elem elem-4" data-offset="true" data-offsetx="10" data-offsety="10" style="left: 953.451px; top: 3.50336px;"></div>
+                <div class="elem elem-5" data-offset="true" data-offsetx="5" data-offsety="5" style="left: 952.468px; top: 1.7358px;"></div>
+            </div>
+        </div>
+</div>
+    
+    
+
+    <div class="sect sect-app-feature">
+        <div class="sect-header">
+            <h2 class="title">微帮电商小程序优势</h2>
+            <p class="subtitle">微商、店主、中小企业、线下门店、初创公司必选产品</p>
+      </div>
+        <div class="phone">
+            <div class="mod-slider app-page-gallery">
+                <ul class="slider-images" style="margin-left: -304px;">
+                 
+                 
+                 
+                 
+    <li class="active">
+    <img src="home/images/10191524_1477387578778.jpg" >
+</li>             
+                 
+<li class="active">
+  <img src="home/images/10547708_1484295103025.jpg" >
+</li>
+
+<li class="">
+    <img src="home/images/10523916_1479278167034.jpg" >
+</li>
+
+<li class="">
+    <img src="home/images/10514741_1478766711171.jpg" >
+</li>
+<li class="">
+    <img src="home/images/10301667_1477387804855.jpg" >
+</li>
+<li class="">
+    <img src="home/images/10547708_1484295103025.jpg" >
+</li>
+ <li class="">
+    <img src="home/images/10647569_1497595779979.jpg" >
+</li>               
+                
+                
+                
+              </ul>
+            <div class="slider-ctrl"> <a href="javascript:;" class="prev">&lt;</a> <a href="javascript:;" class="next">&gt;</a> </div></div>
+        </div>
+        
+        
+        
+        
+       <ul class="feature-list left">
+            <li data-offset="true" data-offsetx="20" style="left: ;"><p>拼团</p></li>
+            <li data-offset="true" data-offsetx="40" style="left: 15.2413px;"><p>秒杀</p></li>
+            <li data-offset="true" data-offsetx="20" style="left: 7.63563px;"><p>预约</p></li>
+            <li data-offset="true" data-offsetx="40" style="left: 15.2413px;"><p>刮刮卡</p></li>
+            <li data-offset="true" data-offsetx="20" style="left: 7.63563px;"><p>积分商城</p></li>
+           
+          
+      </ul>
+      <ul class="feature-list right">
+            <li data-offset="true" data-offsetx="40" style="left: 15.2413px;"><p>砍价</p></li>
+            <li data-offset="true" data-offsetx="20" style="left: 7.6356px;"><p>快速下单</p></li>
+            <li data-offset="true" data-offsetx="40" style="left: 15.2413px;"><p>抽奖</p></li>
+            <li data-offset="true" data-offsetx="20" style="left: 7.6356px;"><p>供货商入驻</p></li>
+            <li data-offset="true" data-offsetx="40" style="left: 15.2413px;"><p>分销</p></li>
+      </ul>
+</div>
+    <div class="sect sect-app-chance">
+  <div class="layout-wrap">
+            <h3 class="title">抓住微信红利新机遇</h3>
+            <p class="text">"大众创新，万众创业"微帮电商小程序助中小企业、创客，微商等群体共同崛起，<br>电商小程序+公众号+社交广告多渠道营销   微帮助力您抢占微信社交红利，微帮电商小程序推助您打造智能商业体系</p>
+            <p class="slogan">微帮电商小程序<br>
+                "零技术门槛、无需开发、高效率、多功能"，急您之所急，想您之所想！</p>
+      </div>
+</div>
+    <div class="sect sect-apppark-feature layout-wrap">
+        
+        <p class="text">5步轻松完成注册</p>
+        <div class="layout-row feature-list">
+            <div class="layout-4-11">
+                <img src="home/images/1.png" alt="" title="">
+                <p><strong>①&nbsp;微信公众号平台</strong><br>注册并认证公众号</p>
+            </div>
+            <div class="layout-4-11">
+                <img src="home/images/2.png" alt="" title="">
+                <p> <strong>②&nbsp;微信公众号平台</strong><br>申请微信支付</p>
+            </div>
+            <div class="layout-4-11">
+                <img src="home/images/3.png" alt="" title="">
+                <p><strong>③&nbsp;微帮电商小程序平台</strong><br>注册电商小程序账号</p>
+            </div>
+            <div class="layout-4-11">
+                <img src="home/images/4.png" alt="" title="">
+                <p><strong>④&nbsp;微帮电商小程序平台</strong><br>填写各项，提交审核</p>
+            </div>
+            
+            <div class="layout-4-11">
+                <img src="home/images/5.png" alt="" title="">
+                <p><strong>⑤&nbsp;微帮电商小程序平台</strong><br>通过审核</p>
+            </div>
+        </div>
+      
+    </div>
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="layout-wrap">
+
+
+
+        <div class="vip-type">
+            <h2 class="ui-tac t-title">功能服务&amp;价格</h2>
+  
+
+
+
+                <div class="layout-row">
+                    <div class="layout-3-1">
+                        <div class="type-card level-0">
+                            <div class="top">
+                                <h2 class="title">免费版</h2>
+                                <p class="des">带微帮标识</p>
+                            </div>
+                            <div class="type-price"><small>￥</small>0</div>
+                            <a class="ui-btn block large btn-contact" href="/web/index.php?r=admin%2Fpassport%2Flogin" onClick="startMakeCustom(0)" title="">免费体验</a>
+                            <div class="type-feature">
+                                <p>支持基础功能</p>
+                                
+                            </div>
+                            <ul class="power-list">
+    <li class="checked"><p>商城名称自定义 </p></li>
+<li class="checked"><p>在线客服 </p></li>
+<li class="checked"><p>物流实时跟踪 </p></li>
+<li class="checked"><p>线下自提 </p></li>
+<li class="checked"><p>在线支付 </p></li>
+<li class="checked"><p>货到付款 </p></li>
+<li class="checked"><p>首页跳转小程序</p></li> 
+<li class="checked"><p>公众号 </p></li>
+<li class="checked"><p>快捷导航设置 </p></li>
+<li class="checked"><p>模板消息通知 </p></li>
+<li class="checked"><p>区域限制购买 </p></li>
+<li class="checked"><p>消费购买限制 </p></li> 
+<li class="checked"><p>优惠券 </p></li>
+<li class="checked"><p>小票打印 </p></li>
+<li class="checked"><p>快递单打印 </p></li>
+<li class="checked"><p>积分功能 </p></li>
+<li class="checked"><p>文章功能 </p></li>
+<li class="checked"><p>商品海报功能</p></li>
+<li class="checked"><p>价格面议 </p></li>
+<li class="checked"><p>订单管理 </p></li>
+<li class="checked"><p>用户管理 </p></li>
+<li class="checked"><p>视频功能</p></li>
+<li class="checked"><p>视频专区 </p></li>
+
+
+<li ><p>版权自定义</p></li>
+<li ><p>拼团 </p></li>
+<li ><p>裂变拆红包 </p></li>
+<li ><p>diy装修功能 </p></li>
+<li ><p>短信/邮件通知 </p></li>
+<li><p>卡券功能 </p></li>
+<li ><p>商品批量管理 </p></li>
+<li ><p>刮刮卡 </p></li>
+<li ><p>幸运抽奖</p></li>
+<li ><p>预约 </p></li>
+<li ><p>秒杀</p></li>
+<li ><p>1688,淘宝天猫一键商品采集</p></li>
+<li ><p>分销</p></li>
+<li ><p>商家入驻</p></li>
+<li ><p>多门店功能 </p></li>
+<li ><p>充值管理 </p></li>
+<li ><p>积分商城 </p></li>
+<li ><p>九宫格抽奖 </p></li>
+<li ><p>砍价 </p></li>
+                            </ul>
+                           
+                        </div>
+                    </div>
+                    <div class="layout-3-1">
+                        <div class="type-card level-2">
+                            <div class="top">
+                                <h2 class="title">基础版</h2>
+                                <p class="des">可以满足电商绝大部分需求</p>
+                            </div>
+                            <div class="type-price"><small>￥</small>1600<small>/年</small></div>
+                            <a class="ui-btn block large btn-contact" href="/web/index.php?r=admin%2Fpassport%2Flogin" target="_top" title="">立即体验</a>
+                            <div class="type-feature">
+                                <p>支持部分高级功能</p>
+                                
+                            </div>
+                            <ul class="power-list">
+                    <li class="checked"><p>商城名称自定义 </p></li>
+<li class="checked"><p>在线客服 </p></li>
+<li class="checked"><p>物流实时跟踪 </p></li>
+<li class="checked"><p>线下自提 </p></li>
+<li class="checked"><p>在线支付 </p></li>
+<li class="checked"><p>货到付款 </p></li>
+<li class="checked"><p>首页跳转小程序</p></li> 
+<li class="checked"><p>公众号 </p></li>
+<li class="checked"><p>快捷导航设置 </p></li>
+<li class="checked"><p>模板消息通知 </p></li>
+<li class="checked"><p>区域限制购买 </p></li>
+<li class="checked"><p>消费购买限制 </p></li> 
+<li class="checked"><p>优惠券 </p></li>
+<li class="checked"><p>小票打印 </p></li>
+<li class="checked"><p>快递单打印 </p></li>
+<li class="checked"><p>积分功能 </p></li>
+<li class="checked"><p>文章功能 </p></li>
+<li class="checked"><p>商品海报功能</p></li>
+<li class="checked"><p>价格面议 </p></li>
+<li class="checked"><p>订单管理 </p></li>
+<li class="checked"><p>用户管理 </p></li>
+<li class="checked"><p>视频功能</p></li>
+<li class="checked"><p>视频专区 </p></li>
+
+
+<li class="checked"><p>版权自定义</p></li>
+<li class="checked"><p>拼团 </p></li>
+<li class="checked"><p>裂变拆红包 </p></li>
+<li class="checked"><p>diy装修功能 </p></li>
+<li class="checked"><p>短信/邮件通知 </p></li>
+<li class="checked"><p>卡券功能 </p></li>
+<li class="checked"><p>商品批量管理 </p></li>
+<li class="checked"><p>刮刮卡 </p></li>
+<li class="checked"><p>幸运抽奖</p></li>
+<li class="checked"><p>预约 </p></li>
+<li class="checked"><p>秒杀</p></li>
+<li class="checked"><p>1688,淘宝天猫一键商品采集(数量限制)</p></li>
+<li ><p>分销</p></li>
+<li ><p>商家入驻</p></li>
+<li ><p>多门店功能 </p></li>
+<li ><p>充值管理 </p></li>
+<li ><p>积分商城 </p></li>
+<li ><p>九宫格抽奖 </p></li>
+<li ><p>砍价 </p></li>
+                            </ul>
+                           
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="layout-3-1">
+                        <div class="type-card level-3">
+                            <div class="top">
+                                <h2 class="title">全能版</h2>
+                                <p class="des">一步到位 创业首选</p>
+                            </div>
+                            <div class="type-price"><small>￥</small>2800<small>/年</small></div>
+                            <a class="ui-btn block large btn-contact" href="/web/index.php?r=admin%2Fpassport%2Flogin" target="_top" title="">立即体验</a>
+                            <div class="type-feature">
+                                <p>支持全部高级VIP功能</p>
+                                
+                            </div>
+                            <ul class="power-list">
+                            <li class="checked"><p>商城名称自定义 </p></li>
+<li class="checked"><p>在线客服 </p></li>
+<li class="checked"><p>物流实时跟踪 </p></li>
+<li class="checked"><p>线下自提 </p></li>
+<li class="checked"><p>在线支付 </p></li>
+<li class="checked"><p>货到付款 </p></li>
+<li class="checked"><p>首页跳转小程序</p></li> 
+<li class="checked"><p>公众号 </p></li>
+<li class="checked"><p>快捷导航设置 </p></li>
+<li class="checked"><p>模板消息通知 </p></li>
+<li class="checked"><p>区域限制购买 </p></li>
+<li class="checked"><p>消费购买限制 </p></li> 
+<li class="checked"><p>优惠券 </p></li>
+<li class="checked"><p>小票打印 </p></li>
+<li class="checked"><p>快递单打印 </p></li>
+<li class="checked"><p>积分功能 </p></li>
+<li class="checked"><p>文章功能 </p></li>
+<li class="checked"><p>商品海报功能</p></li>
+<li class="checked"><p>价格面议 </p></li>
+<li class="checked"><p>订单管理 </p></li>
+<li class="checked"><p>用户管理 </p></li>
+<li class="checked"><p>视频功能</p></li>
+<li class="checked"><p>视频专区 </p></li>
+
+
+<li class="checked"><p>版权自定义</p></li>
+<li class="checked"><p>拼团 </p></li>
+<li class="checked"><p>裂变拆红包 </p></li>
+<li class="checked"><p>diy装修功能 </p></li>
+<li class="checked"><p>短信/邮件通知 </p></li>
+<li class="checked"><p>卡券功能 </p></li>
+<li class="checked"><p>商品批量管理 </p></li>
+<li class="checked"><p>刮刮卡 </p></li>
+<li class="checked"><p>幸运抽奖</p></li>
+<li class="checked"><p>预约 </p></li>
+<li class="checked"><p>秒杀</p></li>
+<li class="checked"><p>1688,淘宝天猫一键商品采集</p></li>
+<li class="checked"><p>分销</p></li>
+<li class="checked"><p>商家入驻</p></li>
+<li class="checked"><p>多门店功能 </p></li>
+<li class="checked"><p>充值管理 </p></li>
+<li class="checked"><p>积分商城 </p></li>
+<li class="checked"><p>九宫格抽奖 </p></li>
+<li class="checked"><p>砍价 </p></li>
+                            </ul>
+                          
+                        </div>
+                    </div>
+                </div>
+          
+        </div>
+        
+             
+           
+         
+        </div>
+    </div>
+
+ 
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+    
+   
+</div></div>
+
+
+
+<script type="text/javascript" language="javascript" src="home/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="home/js/jquery.apppark.js"></script>
+ 
+
+
+
+
+
+
+<div class="mod-icp">
+	<div style="width: 600px; margin: 0px auto; padding: 20px 0px;">
+     <a target="_top"  style="display: inline-block; text-decoration: none; height: 20px; line-height: 20px;">©2018 168weibang.com  &nbsp;&nbsp;&nbsp;微帮（杭州）互联网科技有限公司</a>
+    &nbsp;&nbsp;&nbsp;
+     <a href="http://www.miitbeian.gov.cn/" title="" target="_blank" rel="nofollow">浙ICP备18045908号-1</a>
+    </div>
+	
+</div>
+
+
+<div class="mod-sidebar">
+    <ul class="tab-nav"> 
+        <li><a href="#qq" title="联系客服"><img src="home/images/icon_qq.png" alt="" title=""></a></li>
+        <li><a href="#wx" title="微信"><img src="home/images/icon_wechart.png" alt="" title=""></a></li>
+        <li class="back-top" style="display: none;"><a href="cooperation_new.html" title="返回顶部"><img src="home/images/icon_back_top.png" alt="" title=""></a></li>
+    </ul>
+    <div class="tab-content">
+        
+        <div class="tab-panel xsSideBar" id="qq" style="display: block; right: 0px; opacity: 1;">
+            <div class="cooperate">
+                <p class="ui-fsl">在线客服</p>
+                   
+					<a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2384507299&site=qq&menu=yes&from=message&isappinstalled=0"><img  src="home/images/qq.png"  title=""></a>
+                   
+                 <p class="ui-fsl">在线客服</p>
+                     
+					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2384507299&site=qq&menu=yes&from=message&isappinstalled=0"><img  src="home/images/qq.png"  title=""></a>
+                   
+                </p>
+                
+                 <p class="ui-fsl">在线客服</p>
+                     
+					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2384507299&site=qq&menu=yes&from=message&isappinstalled=0"><img  src="home/images/qq.png"  title=""></a>
+                   
+                </p>
+                
+            </div>
+            <div class="lines"></div>
+            
+            <a href="javascript:;" title="关闭" class="close">[关闭]</a>
+      </div>
+        <div class="tab-panel" id="wx" style="right: 40px; opacity: 0; display: none;">
+            <img src="home/images/weixin.gif" alt="微帮科技微信">
+            <p>官方微信公众号 
+            </p>
+            <a href="javascript:;" title="关闭" class="close">[关闭]</a>
+        </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $("*[data-offset='true']").eleOffset();
+	$(".app-page-gallery").slider({"autoPlay":true,"textBar":false});
+
+		
+		$(".join-btn").bind("click",function(){
+			var h=$("#joinForm").offset().top;
+			$("body, html").animate({scrollTop:h},800);
+			return false;
+		});
+		
+		
+	
+</script>
+
+
+</body>
+</html>

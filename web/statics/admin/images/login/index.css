@@ -1,0 +1,174 @@
+/* ::::: https://www.niaoyun.com/template/Home/Niaoyun/PC/Static/css/common/common/common.min.css?v=e48759 ::::: */
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; list-style: outside none none; }
+body { font-family: "Microsoft Yahei"; min-width: 1200px; }
+a { outline: 0px none; text-decoration: none; }
+img { border: 0px none; }
+*::-moz-selection { background: rgb(30, 172, 223) none repeat scroll 0% 0%; color: rgb(255, 255, 255); }
+.auto { margin: 0px auto; min-width: 1200px; max-width: 1200px; }
+.clearfix {  }
+.clearfix::before, .clearfix::after { display: table; line-height: 0; content: ""; }
+.clearfix::after { clear: both; }
+.pull-right { float: right; }
+.hide { display: none; }
+.hide-text { font: 0px/0 a; color: transparent; text-shadow: none; background-color: transparent; border: 0px none; }
+.default-transition, .default-transition-fast, .default-transition-slow, .default-transition-children > *, .default-transition-children-fast > *, .default-transition-children-slow > *, .default-transition-tree *, .default-transition-tree-fast *, .default-transition-tree-slow * { transition-duration: 0.3s; transition-timing-function: ease; transition-property: background-color, background-position, color, border-color, opacity, z-index, transform, box-shadow; }
+.default-transition-fast, .default-transition-children-fast > *, .default-transition-tree-fast * { transition-duration: 0.2s; }
+.text-overflow { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.default-font { font-family: "Microsoft Yahei"; }
+.ui-autocomplete.ui-menu { padding-bottom: 1px; }
+.welcome-container { float: left; }
+.logout-container { line-height: 80px; font-size: 12px; }
+.login-button, .register-button { display: inline-block; width: 70px; height: 32px; line-height: 32px; color: white; text-align: center; }
+.login-button { margin-left: 20px; border: 1px solid rgb(116, 117, 119); }
+.register-button { width: 96px; text-align: left; padding-left: 35px; margin-left: 14px; background: rgb(0, 170, 255) url('icon_register_gift.png') no-repeat scroll 17px center; }
+.welcome-user .logout-container, .welcome-container .userinfo-container { display: none; }
+.userinfo-container { position: relative; z-index: 10; font-size: 12px; }
+.username-container { position: relative; z-index: 100; height: 80px; line-height: 78px; }
+.username-text { display: inline-block; padding: 0px 20px; line-height: 78px; background: rgba(0, 0, 0, 0) none no-repeat scroll right center; color: white; }
+.username-text span { display: inline-block; vertical-align: top; }
+.username-text-show { max-width: 65px; }
+.user-panel { overflow: hidden; position: absolute; top: 80px; right: 0px; width: 254px; z-index: 10; background: rgb(35, 38, 39) none repeat scroll 0% 0%; line-height: 1; }
+.pay-box { height: 80px; line-height: 80px; background-color: rgb(39, 42, 43); border-bottom: 1px solid rgb(47, 50, 51); }
+.pay-box span { font-size: 18px; color: rgb(255, 102, 0); }
+.pay-box a { display: inline-block; position: absolute; top: 27px; right: 20px; width: 75px; height: 25px; line-height: 24px; background-color: rgb(255, 102, 0); font-size: 12px; color: rgb(255, 255, 255); text-align: center; }
+.pay-box a:hover { background-color: rgb(227, 91, 0); }
+.pay-box, .user-panel-body { padding: 0px 20px; }
+.shortcut-menu-list { padding-top: 10px; }
+.shortcut-menu-item { position: relative; height: 30px; z-index: 1; }
+.shortcut-menu-item a { display: inline-block; padding: 7px 0px; font-size: 12px; color: rgb(193, 193, 193); }
+.shortcut-menu-item a:hover { color: rgb(255, 255, 255); }
+.user-record-count { position: absolute; top: 7px; right: 0px; width: 22px; height: 15px; line-height: 14px; text-align: center; border-radius: 2px; background-color: rgb(7, 144, 212); color: rgb(255, 255, 255); }
+.link-items { display: inline-block; color: rgb(229, 229, 229); font-size: 12px; margin-left: 14px; line-height: 1; }
+.link-items:hover { color: rgb(0, 170, 255); }
+.link-items:first-child { margin-left: 0px; }
+.link-spacing { display: inline-block; width: 1px; height: 15px; margin: 0px 0px 0px 14px; overflow: hidden; background-color: rgb(255, 255, 255); vertical-align: middle; }
+.user-panel-bottom { height: 50px; line-height: 50px; font-size: 12px; }
+.user-panel-bottom .auth-status { display: none; padding-left: 22px; background: rgba(0, 0, 0, 0) url('auth_status.png') no-repeat scroll left center; color: rgb(46, 165, 80); }
+.user-panel-bottom .new-auth { display: none; color: rgb(206, 206, 206); }
+.user-panel-bottom .exit-btn:hover, .user-panel-bottom .new-auth:hover { color: rgb(255, 255, 255); }
+.user-panel-bottom .exit-btn { display: inline-block; width: 75px; height: 25px; margin-top: 14px; line-height: 24px; background-color: rgb(51, 55, 56); font-size: 12px; color: rgb(205, 205, 205); text-align: center; }
+.mobile-qrcode::before { content: ""; position: absolute; top: -16px; left: 50%; border-width: 8px; border-style: solid; border-color: transparent transparent rgb(255, 255, 255); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; margin-left: -8px; }
+.reg-gift::after { content: ""; position: absolute; border-width: 4px; border-style: solid; border-color: transparent rgb(255, 229, 0) transparent transparent; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; left: -8px; top: 4px; }
+.header { height: 80px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.header, .header-main:hover .header { background-color: rgb(43, 48, 51); }
+.header-main:hover .header { border-bottom: 0px none; }
+.header-left { float: left; }
+.header-nav-right { float: right; }
+.header-logo { display: inline-block; position: relative; width: 130px; height: 80px; float: left; }
+.logo { position: absolute; top: 0px; left: 0px; width: 130px; height: 100%; background: rgba(0, 0, 0, 0) url('header_logo.png') no-repeat scroll left center; }
+.header-nav { margin-left: 30px; float: left; }
+.header-nav ul {  }
+.header-nav ul::before, .header-nav ul::after { display: table; line-height: 0; content: ""; }
+.header-nav ul::after { clear: both; }
+.header-nav-li { float: left; height: 80px; z-index: 100; }
+.header-nav-li > a { display: inline-block; text-decoration: none; width: 100%; height: 80px; padding: 0px 24px; line-height: 80px; color: rgb(255, 255, 255); font-size: 18px; text-align: center; transition: color 0.3s ease 0s; }
+.newest-act-link { position: relative; }
+.newest-act-link-icon { position: absolute; top: 24px; left: 50%; display: block; margin-left: 38px; width: 22px; height: 13px; background: rgba(0, 0, 0, 0) url('newest_act_link_icon.png') no-repeat scroll center center; }
+.topbar-right { float: right; height: 80px; line-height: 78px; }
+.welcome-container { float: right; }
+.header .auto { overflow: visible; }
+.cursor-arrow { cursor: default; }
+.pop-list { display: none; position: absolute; top: 80px; left: 0px; right: 0px; z-index: 1000; margin: 0px auto; min-width: 1200px; max-width: 100%; height: 524px; padding-top: 40px; background-color: rgb(33, 38, 41); box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.3); }
+.pop-list .pop-arrow { position: absolute; content: ""; left: 50%; bottom: 24px; margin-left: -13px; width: 26px; height: 26px; background: rgba(0, 0, 0, 0) url('pop_arrow.png') no-repeat scroll center center; cursor: pointer; }
+.pop-list .pop-arrow:hover { background-image: url('pop_arrow_hover.png'); }
+.nav-pop-item { float: left; width: 23.5%; margin-left: 2%; }
+.nav-pop-item:first-child { margin-left: 0px; }
+.nav-pop-item ul { margin-top: 16px; }
+.nav-item-title { font-size: 14px; color: rgb(122, 129, 133); }
+a.nav-item-title { display: block; }
+a.nav-item-title:hover { color: rgb(0, 170, 255); }
+.nav-pop-item li { width: 100%; margin-bottom: 16px; }
+.nav-pop-item.single-item { width: 100%; }
+.nav-pop-item.single-item li { float: left; margin-left: 2%; width: 23.5%; }
+.nav-pop-item.single-item li:first-child { margin-left: 0px; }
+.nav-pop-item.single-item li.last-item { margin-left: 0px; }
+.nav-pop-item li a { display: block; width: 100%; height: 100%; background: rgb(43, 48, 51) none repeat scroll 0% 0%; padding: 16px; border: 1px solid rgb(43, 48, 51); }
+.nav-pop-item li a:hover { border-color: rgb(0, 170, 255); }
+.nav-pop-item li a:hover .nav-item-name, .nav-pop-item li a:hover .nav-item-brief { color: rgb(0, 170, 255); }
+.nav-item-name { position: relative; display: inline-block; margin-bottom: 5px; color: rgb(255, 255, 255); font-size: 14px; }
+.nav-item-name::after { position: absolute; right: -38px; top: 1px; width: 30px; height: 18px; background: rgba(0, 0, 0, 0) url('nav_item_icon.png') no-repeat scroll center center; }
+.nav-item-name.nav-item-hot::after { content: ""; background-position: 0px 0px; }
+.nav-item-name.nav-item-new::after { content: ""; background-position: 0px -20px; }
+.nav-item-name.nav-item-tobe::after { content: ""; right: -69px; top: 0px; width: 60px; height: 20px; background: rgba(0, 0, 0, 0) url('nav_tobe_icon.png') repeat scroll 0% 0%; line-height: 20px; color: rgb(255, 255, 255); text-align: center; font-size: 12px; }
+.nav-item-brief { font-size: 12px; color: rgb(122, 129, 133); }
+.banner-box { height: 80px; }
+.top-nav { position: absolute; left: 0px; top: 0px; width: 100%; min-width: 1200px; height: 80px; z-index: 100; }
+.login-link::before { content: ""; position: absolute; top: -6px; left: -40px; width: 30px; height: 30px; background: rgba(0, 0, 0, 0) url('header_user.png') no-repeat scroll center center; }
+.banner-ul li { display: none; height: 100%; width: 100%; float: left; }
+.service-action { display: none; }
+.banner-point { display: none; position: absolute; bottom: 148px; left: 0px; width: 100%; height: 18px; line-height: 18px; }
+.slider-main { display: none; position: relative; }
+.banner-area { width: 100%; text-align: center; }
+.banner-area li { margin: 0px 15px; display: inline-block; width: 10px; height: 10px; background: rgba(0, 0, 0, 0) url('pagination_02.png') no-repeat scroll 0% 0%; }
+.banner-area li.active { background: rgba(0, 0, 0, 0) url('pagination_01.png') no-repeat scroll 0% 0%; }
+.service-action { display: none; }
+.signfooter { background-color: rgb(242, 244, 245); border-top: 1px solid rgb(221, 221, 221); text-align: center; }
+.footer-signfooter { width: 100%; padding: 25px 0px 30px; }
+.footer-signfooter p, .footer-signfooter a { margin-top: 8px; font-size: 12px; color: rgb(153, 153, 153); }
+.signfooter-nav { margin-top: 25px; }
+.signfooter-nav-list { display: inline-block; }
+.signfooter-nav-list li { position: relative; float: left; margin: 0px 30px; height: 20px; line-height: 20px; }
+.signfooter-nav-list li::before { position: absolute; left: -30px; top: 4px; content: ""; height: 14px; width: 1px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; }
+.signfooter-nav-list li:first-child::before { width: 0px; height: 0px; }
+.signfooter-nav-list li a { display: inline-block; font-size: 16px; color: rgb(102, 102, 102); }
+.show-captcha { height: 30px; }
+.signfooter-foot-link { margin-left: 15px; text-decoration: none; color: rgb(182, 226, 242); }
+.signfooter-foot-link:hover { text-decoration: underline; }
+/* ::::: https://www.niaoyun.com/template/Home/Niaoyun/PC/Static/css/module/login/login.css?v=17900 ::::: */
+
+.login-bg { background-color: rgb(242, 244, 245); }
+.login-desc { padding-left: 20px; padding-top: 184px; color: rgb(255, 255, 255); font-size: 16px; }
+.login-desc h2 { margin-bottom: 40px; font-size: 28px; }
+.login-desc p { height: 22px; line-height: 22px; margin-bottom: 24px; text-indent: 38px; background: rgba(0, 0, 0, 0) url('login_desc_icon.png') no-repeat scroll left center; }
+.login-main-area { position: relative; min-width: 1200px; height: 630px; background: rgba(0, 0, 0, 0) url('login_bg.jpg') no-repeat scroll 0px 0px; }
+.login-inner { position: relative; z-index: 20; }
+.login-main { position: absolute; right: 40px; top: 120px; z-index: 50; padding: 40px 40px 38px; background-color: rgb(255, 255, 255); box-shadow: 0px 1px 6px rgb(136, 136, 136); }
+.login-title { font-weight: bold; font-size: 22px; color: rgb(102, 102, 102); margin-bottom: 30px; text-align: center; }
+.error-info { display: none; height: 32px; line-height: 32px; text-indent: 32px; font-size: 12px; color: rgb(255, 51, 0); background: rgb(255, 224, 217) url('error-icon.png') no-repeat scroll 8px 8px; }
+.login-form-item { width: 300px; height: 40px; line-height: 40px; border: 1px solid rgb(221, 221, 221); margin-top: 8px; padding-left: 41px; }
+.login-form-item + .login-form-item { margin-top: 16px; }
+.form-item-bg { background-image: url('login_icons.png'); background-repeat: no-repeat; }
+.form-item-bg-user { position: relative; z-index: 50; background-position: 9px -278px; }
+.form-item-bg-lock { background-position: 10px -196px; }
+.form-item-bg-captcha { background-position: 10px -114px; }
+.login-form-item input { display: block; width: 100%; height: 38px; line-height: 38px; font-size: 14px; border: medium none; outline: medium none; font-family: "Microsoft Yahei",Tahoma,Arial; }
+.form-item-bg-lock { position: relative; }
+.caps-lock-remind { display: none; position: absolute; top: 33px; left: 8px; z-index: 31; padding: 10px; line-height: 12px; background-color: rgb(255, 255, 255); box-shadow: 1px 1px 3px 2px rgba(0, 159, 217, 0.2); border: 1px solid rgb(204, 204, 204); font-size: 12px; }
+.caps-lock-remind::before, .caps-lock-remind::after { content: ""; position: absolute; }
+.caps-lock-remind::before { border-width: 4px; border-style: solid; border-color: transparent transparent rgb(255, 255, 255); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; top: -8px; left: 42px; z-index: 10; margin-left: -8px; }
+.caps-lock-remind::after { border-width: 6px; border-style: solid; border-color: transparent transparent rgb(204, 204, 204); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; top: -12px; left: 40px; z-index: 9; margin-left: -8px; }
+.email-complete-list { position: absolute; left: -1px; right: 0px; top: 40px; z-index: 10; line-height: normal; }
+.email-complete-list .ui-autocomplete { left: 0px !important; right: 0px !important; padding-top: 1px; border-top-color: rgb(0, 159, 217); }
+.captcha-deck { display: none; margin-top: 16px; }
+.captcha-item { position: relative; z-index: 30; float: left; margin-top: 0px; width: 128px; }
+.captcha-item input { width: 90%; }
+.captcha-box { position: relative; z-index: 20; }
+.show-captcha { margin: 0px 0px 0px 8px; cursor: pointer; width: 132px; height: 40px; }
+.refresh-captcha { position: absolute; right: 0px; top: 8px; width: 24px; height: 22px; background: rgba(0, 0, 0, 0) url('refresh-icon.png') no-repeat scroll center center; cursor: pointer; }
+.login-options { margin-top: 18px; line-height: 14px; }
+.idsave-check { position: relative; z-index: 10; height: 12px; line-height: 12px; font-size: 12px; color: rgb(0, 170, 255); padding-left: 20px; cursor: pointer; }
+.login-options a { float: right; color: rgb(0, 170, 255); font-size: 12px; text-decoration: none; }
+.login-options a:hover { text-decoration: underline; }
+.idsave-check input { position: absolute; z-index: -10; left: 0px; top: 1px; width: 1px; height: 0px; }
+.checkbox-icon { position: absolute; left: 0px; top: 1px; z-index: 10; width: 16px; height: 16px; background: rgb(255, 255, 255) url('login_icons.png') no-repeat scroll -2px -48px; }
+.login-submit { width: 300px; height: 40px; line-height: 40px; font-size: 16px; background-color: rgb(0, 170, 255); color: rgb(255, 255, 255); border: medium none; outline: medium none; cursor: pointer; margin-top: 30px; }
+.login-submit:hover { background-color: rgb(65, 188, 249); }
+.go-reg { font-size: 12px; color: rgb(153, 153, 153); margin-top: 20px; }
+.go-reg a { color: rgb(0, 170, 255); text-decoration: none; margin-left: 6px; }
+.go-reg a:hover { text-decoration: underline; }
+.bg-change { text-align: center; }
+/* ::::: https://www.niaoyun.com/template/Home/Niaoyun/PC/Static/lib/framework/jquery-ui-custom/jquery-ui-1.11.4.custom.min.css ::::: */
+
+.ui-helper-hidden-accessible { border: 0px none; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; }
+.ui-helper-clearfix::before, .ui-helper-clearfix::after { content: ""; display: table; border-collapse: collapse; }
+.ui-helper-clearfix::after { clear: both; }
+.ui-front { z-index: 100; }
+.ui-autocomplete { position: absolute; top: 0px; left: 0px; cursor: default; }
+.ui-menu { list-style: outside none none; padding: 0px; margin: 0px; display: block; outline: medium none; }
+.ui-widget { font-family: Arial,Helvetica,sans-serif; font-size: 1em; }
+.ui-widget-content { border: 1px solid rgb(221, 221, 221); background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(51, 51, 51); }
+/* ::::: https://www.niaoyun.com/template/Home/Niaoyun/PC/Static/lib/plugin/jQuery/dialog/skins/niaoyunNewDialog.css?4.1.7 ::::: */
+
+body {  }
+.aui_buttons button::-moz-focus-inner { border: 0px none; padding: 0px; margin: 0px; }

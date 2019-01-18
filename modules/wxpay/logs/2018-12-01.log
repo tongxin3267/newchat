@@ -1,0 +1,6 @@
+[2018-12-01 14:50:37][debug] begin notify
+[2018-12-01 14:50:37][debug] call back， return xml:<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>
+[2018-12-01 14:55:18][debug] begin notify
+[2018-12-01 14:55:18][debug] call back， return xml:<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>
+[2018-12-01 14:55:36][debug] begin notify
+[2018-12-01 14:55:36][debug] call back， return xml:<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>

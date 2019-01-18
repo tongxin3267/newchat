@@ -1,0 +1,8 @@
+<xml><ToUserName><![CDATA[gh_c0ec120a5bda]]></ToUserName>
+<FromUserName><![CDATA[oUqK-5w3bRxW4jKrv0SvfCabNn7E]]></FromUserName>
+<CreateTime>1542971452</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[SCAN]]></Event>
+<EventKey><![CDATA[2123]]></EventKey>
+<Ticket><![CDATA[gQGD8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyMnFvOEItaXllLUQxWi1CVE5yMUEAAgR23vdbAwQIBwAA]]></Ticket>
+</xml>
