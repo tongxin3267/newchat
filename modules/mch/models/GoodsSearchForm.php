@@ -37,9 +37,13 @@ class GoodsSearchForm extends MchModel
     public function search()
     {
         $goods = $this->goods;
-        $catList = Cat::find()->where(['store_id' => $this->store->id, 'is_delete' => 0, 'parent_id' => 0])->all();
+        $catList = Cat::find()->where(['store_id' => 1, 'is_delete' => 0, 'parent_id' => 0])->all();
+
+//        $catList = Cat::find()->where(['store_id' => $this->store->id, 'is_delete' => 0, 'parent_id' => 0])->all();
         $postageRiles = PostageRules::find()->where(['store_id' => $this->store->id, 'is_delete' => 0])->all();
+
         $cardList = Card::find()->where(['store_id' => $this->store->id, 'is_delete' => 0])->asArray()->all();
+
         if ($goods->full_cut) {
             $goods->full_cut = json_decode($goods->full_cut, true);
         } else {
@@ -115,6 +119,7 @@ class GoodsSearchForm extends MchModel
         $cat_list = $cat_query->groupBy('name')->orderBy(['g.cat_id' => SORT_ASC])->select([
             '(case when g.cat_id=0 then c2.name else c.name end) name',
         ])->asArray()->column();
+
         $query->groupBy('g.id');
         $count = $query->count();
         $pagination = new Pagination(['totalCount' => $count, 'route' => \Yii::$app->requestedRoute]);
@@ -125,6 +130,7 @@ class GoodsSearchForm extends MchModel
             ->all();
 
         $goodsList = ArrayHelper::toArray($list);
+
         return [
             'list' => $list,
             'goodsList' => $goodsList,

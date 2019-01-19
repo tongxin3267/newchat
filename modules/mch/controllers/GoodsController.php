@@ -167,7 +167,7 @@ class GoodsController extends Controller
                 }else{
                     $model = \Yii::$app->request->post('model');
 
-                    $edir_res = Goods::updateAll(['price'=>$model['price']],['id'=>$goods->id]);
+                    $edir_res = Goods::updateAll(['price'=>$model['price'],'quick_purchase'=>$model['quick_purchase'],'is_level'=>$model['is_level']],['id'=>$goods->id]);
                     if($edir_res){
                         $re =[];
                         $re['code'] = 0;

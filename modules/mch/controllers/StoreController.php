@@ -346,7 +346,7 @@ class StoreController extends Controller
      */
     public function actionCat()
     {
-        $cat_list = Cat::find()->where(['store_id' => $this->store->id, 'is_delete' => 0, 'parent_id' => 0])->orderBy('sort,addtime DESC')->all();
+        $cat_list = Cat::find()->where(['store_id' => 1, 'is_delete' => 0, 'parent_id' => 0])->orderBy('sort,addtime DESC')->all();
         return $this->render('cat', [
             'cat_list' => $cat_list,
         ]);
