@@ -191,8 +191,31 @@ $model = Yii::$app->admin->identity;
         width: 160px;
     }
 </style>
-
-
+<style>
+    #page{
+        position: relative;
+    }
+    .cover{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255,255,255,0);
+        position: absolute;
+        top: -665px;
+        z-index: 998;
+    }
+    .can{
+        z-index: 999;
+    }
+    .can-img{
+        display: block;
+        width: 74.5%;
+        height: 87.5%;
+        background-color:rgba(255,255,255,0);
+        position: absolute;
+        z-index:998;
+        float: left;
+    }
+</style>
 <div id="one_menu_bar">
     <div id="tab_bar">
         <ul>
@@ -228,14 +251,12 @@ $model = Yii::$app->admin->identity;
                                     <a flex="cross:center" class="head-step" href="#step4">商品详情</a>
                                 </div>
                             </div>
-
+                            <div class="cover"></div>
                             <div class="step-block" flex="dir:left box:first">
                                 <div>
                                     <span>选择分类</span>
                                     <br>
-                                    <?php if ($model->username == 'admin'):?>
                                         <a class="addcat" href="javascript:">添加新分类</a>
-                                    <?php endif;?>
                                     <span class="step-location" id="step1"></span>
                                 </div>
                                 <div>
@@ -249,7 +270,6 @@ $model = Yii::$app->admin->identity;
                                                 <input type="hidden" name="model[cat_id][]" class="form-control cat-id"
                                                        v-model="item.cat_id">
 
-                                                <?php if ($model->username == 'admin'):?>
                                                 <span class="input-group-btn">
                             <a class="btn btn-secondary cat-modal" href="javascript:" data-toggle="modal"
                                data-target="#catModal" :data-index="i">选择分类</a>
@@ -257,7 +277,6 @@ $model = Yii::$app->admin->identity;
                                                 <span class="input-group-btn">
                             <a class="btn btn-danger delete-cat" href="javascript:" :data-index="i">删除</a>
                         </span>
-                                                <?php endif;?>
                                             </div>
                                         </div>
                                     </div>
@@ -267,12 +286,10 @@ $model = Yii::$app->admin->identity;
                                         </div>
                                         <div class="col-9">
                                             <div class="input-group short-row">
-                                <input class="form-control copy-url" placeholder="请输入商品详情地址连接">
+                                                <input class="form-control copy-url" placeholder="请输入商品详情地址连接">
                                                 <span class="input-group-btn">
-                                                    <?php if ($model->username == 'admin'):?>
-                                    <a class="btn btn-secondary copy-btn" href="javascript:">立即获取</a>
-                                                    <?php endif;?>
-                                </span>
+                                                        <a class="btn btn-secondary copy-btn" href="javascript:">立即获取</a>
+                                                 </span>
                                             </div>
                                             <div class="short-row text-muted fs-sm">
                                 例如：商品链接为:http://item.taobao.com/item.htm?id=522155891308<br />
@@ -287,7 +304,7 @@ $model = Yii::$app->admin->identity;
 
                             <div class="step-block" flex="dir:left box:first">
                                 <div>
-                                    <span>基本信息</span>
+                                    <span>基本信息 <font style="color: red;font-size: 10px;display: block">(售价可修改)</font></span>
                                     <span class="step-location" id="step2"></span>
                                 </div>
                                 <div>
@@ -296,8 +313,7 @@ $model = Yii::$app->admin->identity;
                                             <label class=" col-form-label required">商品名称</label>
                                         </div>
                                         <div class="col-9">
-                                            <input class="form-control short-row" type="text" name="model[name]"
-                                                   value="<?= str_replace("\"", "&quot", $goods['name']) ?>">
+                                            <input class="form-control short-row" type="text" name="model[name]" value="<?= str_replace("\"", "&quot", $goods['name']) ?>" >
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -305,8 +321,7 @@ $model = Yii::$app->admin->identity;
                                             <label class=" col-form-label">单位</label>
                                         </div>
                                         <div class="col-9">
-                                            <input class="form-control short-row" type="text" name="model[unit]"
-                                                   value="<?= $goods['unit'] ? $goods['unit'] : '件' ?>">
+                                            <input class="form-control short-row" type="text" name="model[unit]" value="<?= $goods['unit'] ? $goods['unit'] : '件' ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -314,8 +329,7 @@ $model = Yii::$app->admin->identity;
                                             <label class=" col-form-label">商品排序</label>
                                         </div>
                                         <div class="col-9">
-                                            <input class="form-control short-row" type="text" name="model[sort]"
-                                                   value="<?= $goods['sort'] ?>">
+                                            <input class="form-control short-row" type="text" name="model[sort]" value="<?= $goods['sort'] ?>" >
                                             <div class="text-muted fs-sm">排序按升序排列</div>
                                         </div>
                                     </div>
@@ -327,7 +341,7 @@ $model = Yii::$app->admin->identity;
                                         <div class="col-9">
                                             <input class="form-control short-row" type="number"
                                                    name="model[virtual_sales]"
-                                                   value="<?= $goods['virtual_sales'] ?>" min="0" max="999999">
+                                                   value="<?= $goods['virtual_sales'] ?>" min="0" max="999999" >
                                             <div class="text-muted fs-sm">前端展示的销量=实际销量+已出售量</div>
                                         </div>
                                     </div>
@@ -339,7 +353,7 @@ $model = Yii::$app->admin->identity;
                                         <div class="col-9">
                                             <input class="form-control short-row" type="number"
                                                    name="model[confine_count]"
-                                                   value="<?= $goods['confine_count'] ?>" min="0" max="999999">
+                                                   value="<?= $goods['confine_count'] ?>" min="0" max="999999" >
                                             <div class="text-muted fs-sm">设置为0则不限购，大于0则等于对应的限购数量</div>
                                         </div>
                                     </div>
@@ -352,7 +366,7 @@ $model = Yii::$app->admin->identity;
                                             <div class="input-group short-row">
                                                 <input type="number" step="0.01" class="form-control"
                                                        name="model[weight]"
-                                                       value="<?= $goods['weight'] ? $goods['weight'] : 0 ?>">
+                                                       value="<?= $goods['weight'] ? $goods['weight'] : 0 ?>" >
                                                 <span class="input-group-addon">克<span>
                                             </div>
                                         </div>
@@ -367,7 +381,6 @@ $model = Yii::$app->admin->identity;
                                                 <div class="input-group">
                                                     <input class="form-control file-input" name="model[cover_pic]"
                                                            value="<?= $goods->cover_pic ?>">
-                                                    <?php if ($model->username == 'admin'):?>
                                                     <span class="input-group-btn">
                                                         <a class="btn btn-secondary upload-file" href="javascript:" data-toggle="tooltip" data-placement="bottom" title="上传文件">
                                                             <span class="iconfont icon-cloudupload"></span>
@@ -383,7 +396,6 @@ $model = Yii::$app->admin->identity;
                                                             <span class="iconfont icon-close"></span>
                                                         </a>
                                                     </span>
-                                                    <?php endif;?>
                                                 </div>
                                                 <div class="upload-preview text-center upload-preview">
                                                     <span class="upload-preview-tip">325&times;325</span>
@@ -398,13 +410,10 @@ $model = Yii::$app->admin->identity;
                                             <label class=" col-form-label">商品视频</label>
                                         </div>
                                         <div class="col-9">
-                                            <div class="video-picker"
-                                                 data-url="<?= $urlManager->createUrl(['upload/video']) ?>">
+                                            <div class="video-picker" data-url="<?= $urlManager->createUrl(['upload/video']) ?>">
                                                 <div class="input-group short-row">
-                                                    <input class="video-picker-input video form-control" name="model[video_url]" value="<?= $goods['video_url'] ?>"
-                                                           placeholder="请输入视频源地址或者选择上传视频">
-                                                    <a href="javascript:"
-                                                       class="btn btn-secondary video-picker-btn">选择视频</a>
+                                                    <input class="video-picker-input video form-control" name="model[video_url]" value="<?= $goods['video_url'] ?>" placeholder="请输入视频源地址或者选择上传视频" >
+                                                    <a href="javascript:" class="btn btn-secondary video-picker-btn">选择视频</a>
                                                 </div>
                                                 <a class="video-check"
                                                    href="<?= $goods['video_url'] ? $goods['video_url'] : "javascript:" ?>"
@@ -435,19 +444,15 @@ $model = Yii::$app->admin->identity;
                                                 <div class="input-group">
                                                     <input class="form-control file-input" readonly>
                                                     <span class="input-group-btn">
-                                        <a class="btn btn-secondary upload-file" href="javascript:"
-                                           data-toggle="tooltip"
-                                           data-placement="bottom" title="上传文件">
-                                            <span class="iconfont icon-cloudupload"></span>
-                                        </a>
-                                    </span>
+                                                        <a class="btn btn-secondary upload-file" href="javascript:" data-toggle="tooltip" data-placement="bottom" title="上传文件">
+                                                            <span class="iconfont icon-cloudupload"></span>
+                                                        </a>
+                                                    </span>
                                                     <span class="input-group-btn">
-                                        <a class="btn btn-secondary select-file" href="javascript:"
-                                           data-toggle="tooltip"
-                                           data-placement="bottom" title="从文件库选择">
-                                            <span class="iconfont icon-viewmodule"></span>
-                                        </a>
-                                    </span>
+                                                        <a class="btn btn-secondary select-file" href="javascript:" data-toggle="tooltip" data-placement="bottom" title="从文件库选择">
+                                                            <span class="iconfont icon-viewmodule"></span>
+                                                        </a>
+                                                    </span>
                                                 </div>
                                                 <div class="upload-preview-list" id="sortList">
                                                     <?php if (count($goods_pic_list) > 0) : ?>
@@ -480,7 +485,7 @@ $model = Yii::$app->admin->identity;
                                         <div class="col-3 text-right">
                                             <label class=" col-form-label required">售价</label>
                                         </div>
-                                        <div class="col-9">
+                                        <div class="col-9 can">
                                             <div class="input-group short-row">
                                                 <input type="number" step="0.01" class="form-control"
                                                        name="model[price]" min="0.01"
@@ -498,7 +503,7 @@ $model = Yii::$app->admin->identity;
                                             <div class="input-group short-row">
                                                 <input type="number" step="0.01" class="form-control"
                                                        name="model[cost_price]" min="0.01"
-                                                       value="<?= $goods['cost_price'] ? $goods['cost_price'] : 1 ?>">
+                                                       value="<?= $goods['cost_price'] ? $goods['cost_price'] : 1 ?>" >
                                                 <span class="input-group-addon">元</span>
                                             </div>
                                         </div>
@@ -512,7 +517,7 @@ $model = Yii::$app->admin->identity;
                                             <div class="input-group short-row">
                                                 <input type="number" step="0.01" class="form-control short-row"
                                                        name="model[original_price]" min="0"
-                                                       value="<?= $goods['original_price'] ? $goods['original_price'] : 1 ?>">
+                                                       value="<?= $goods['original_price'] ? $goods['original_price'] : 1 ?>" >
                                                 <span class="input-group-addon">元</span>
                                             </div>
                                         </div>
@@ -525,7 +530,7 @@ $model = Yii::$app->admin->identity;
                                         </div>
                                         <div class="col-9">
                                             <input class="form-control short-row" name="model[service]"
-                                                   value="<?= $goods['service'] ?>">
+                                                   value="<?= $goods['service'] ?>" >
                                             <div class="fs-sm text-muted">例子：正品保障,极速发货,7天退换货。多个请使用英文逗号<kbd>,</kbd>分隔
                                             </div>
                                         </div>
@@ -536,11 +541,10 @@ $model = Yii::$app->admin->identity;
                                             <label class=" col-form-label">运费设置</label>
                                         </div>
                                         <div class="col-9">
-                                            <select class="form-control short-row" name="model[freight]">
+                                            <select class="form-control short-row" name="model[freight]" >
                                                 <option value="0">默认模板</option>
                                                 <?php foreach ($postageRiles as $p) : ?>
-                                                    <option
-                                                            value="<?= $p->id ?>" <?= $p->id == $goods['freight'] ? 'selected' : '' ?>><?= $p->name ?></option>
+                                                    <option value="<?= $p->id ?>" <?= $p->id == $goods['freight'] ? 'selected' : '' ?>><?= $p->name ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -554,7 +558,7 @@ $model = Yii::$app->admin->identity;
                                             <div class="input-group short-row">
                                                 <input type="number" class="form-control short-row"
                                                        name="full_cut[pieces]"
-                                                       value="<?= $goods['full_cut']['pieces'] ?>">
+                                                       value="<?= $goods['full_cut']['pieces'] ?>" >
                                                 <span class="input-group-addon">件</span>
                                             </div>
                                             <div class="fs-sm text-muted">1如果设置0或空，则不支持满件包邮</div>
@@ -569,7 +573,7 @@ $model = Yii::$app->admin->identity;
                                             <div class="input-group short-row">
                                                 <input type="number" step="0.01" class="form-control short-row"
                                                        name="full_cut[forehead]"
-                                                       value="<?= $goods['full_cut']['forehead'] ?>">
+                                                       value="<?= $goods['full_cut']['forehead'] ?>" >
                                                 <span class="input-group-addon">元</span>
                                             </div>
                                             <div class="fs-sm text-muted">如果设置0或空，则不支持满额包邮</div>
@@ -616,8 +620,7 @@ $model = Yii::$app->admin->identity;
                                         </div>
                                         <div class="col-9">
                                             <div class="input-group short-row">
-                                                <input class="form-control" name="model[goods_num]"
-                                                       value="<?= $goods->getNum() ?>">
+                                                <input class="form-control" name="model[goods_num]" value="<?= $goods->getNum() ?>" >
                                                 <span class="input-group-addon">件</span>
                                             </div>
                                         </div>
@@ -629,7 +632,7 @@ $model = Yii::$app->admin->identity;
                                         <div class="col-9">
                                             <div class="input-group short-row">
                                                 <input class="form-control" name="model[goods_no]"
-                                                       value="<?= $goods->getGoodsNo() ?>">
+                                                       value="<?= $goods->getGoodsNo() ?>" >
                                             </div>
                                         </div>
                                     </div>
@@ -804,21 +807,17 @@ $model = Yii::$app->admin->identity;
                                                         <span class="iconfont icon-cloudupload"></span>
                                                     </a>
                                                     </span>
-                                                                    <span class="input-group-btn">
-                                                        <a class="btn btn-secondary select-attr-pic" href="javascript:"
-                                                           data-toggle="tooltip"
-                                                           data-placement="bottom" title="从文件库选择">
+                                                    <span class="input-group-btn">
+                                                        <a class="btn btn-secondary select-attr-pic" href="javascript:" data-toggle="tooltip" data-placement="bottom" title="从文件库选择">
                                                             <span class="iconfont icon-viewmodule"></span>
                                                         </a>
                                                     </span>
-                                                                    <span class="input-group-btn">
-                                                        <a class="btn btn-secondary delete-attr-pic" href="javascript:"
-                                                           data-toggle="tooltip"
-                                                           data-placement="bottom" title="删除文件">
+                                                    <span class="input-group-btn">
+                                                        <a class="btn btn-secondary delete-attr-pic" href="javascript:" data-toggle="tooltip" data-placement="bottom" title="删除文件">
                                                             <span class="iconfont icon-close"></span>
                                                         </a>
                                                     </span>
-                                                                </div>
+                                                </div>
                                                                 <img v-if="item.pic" v-bind:src="item.pic"
                                                                      style="width: 50px;height: 50px;margin: 2px 0;border-radius: 2px">
                                                             </td>
@@ -834,9 +833,9 @@ $model = Yii::$app->admin->identity;
                                 </div>
                             </div>
 
-                            <div class="step-block" flex="dir:left box:first">
+                            <div class="step-block can" flex="dir:left box:first">
                                 <div>
-                                    <span>营销</span>
+                                    <span>营销 <font style="color: red;font-size: 10px;display: block">(可修改)</font></span>
                                     <span class="step-location" id="step6"></span>
                                 </div>
                                 <div>
@@ -952,9 +951,9 @@ $model = Yii::$app->admin->identity;
                             </div>
                             <!-- 快速购买开始  -->
                             <?php if (get_plugin_type() != 2): ?>
-                                <div class="step-block" flex="dir:left box:first">
+                                <div class="step-block can" flex="dir:left box:first">
                                     <div>
-                                        <span>快速购买</span>
+                                        <span>快速购买<font style="color: red;font-size: 10px;display: block">(可修改)</font></span>
                                         <span class="step-location" id="step7"></span>
                                     </div>
                                     <div>
@@ -1021,13 +1020,13 @@ $model = Yii::$app->admin->identity;
                                     <span class="step-location" id="step4"></span>
                                 </div>
                                 <div>
+                                    <span class="can-img"></span>
                                     <div class="form-group row">
                                         <div class="col-3 text-right">
                                             <label class=" col-form-label required">图文详情</label>
                                         </div>
                                         <div class="col-9">
-                            <textarea class="short-row" id="editor"
-                                      name="model[detail]"><?= $goods['detail'] ?></textarea>
+                                            <textarea class="short-row" id="editor" name="model[detail]" readonly="readonly"><?= $goods['detail'] ?></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -1062,8 +1061,8 @@ $model = Yii::$app->admin->identity;
             </div>
 
             <div style="margin-left: 0;" class="form-group row text-center">
-                <a class="btn btn-primary auto-form-btn" href="javascript:">保存</a>
-                <input type="button" class="btn btn-default ml-4"
+                <a class="btn btn-primary auto-form-btn can" href="javascript:">保存</a>
+                <input type="button" class="btn btn-default ml-4 can"
                        name="Submit" onclick="javascript:history.back(-1);" value="返回">
             </div>
         </form>

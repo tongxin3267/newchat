@@ -1437,7 +1437,7 @@ class AppController extends Controller
                 $goods->original_price = $v->original_price;
                 $goods->detail = $v->detail;
                 $goods->cat_id = $v->cat_id;
-                $goods->status = $v->status;
+                $goods->status = 0;
                 $goods->addtime = $v->addtime;
                 $goods->is_delete = $v->is_delete;
                 $goods->attr = $v->attr;
