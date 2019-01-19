@@ -196,7 +196,7 @@ class GoodsController extends Controller
         $args['goods'] = $goods;
         \Yii::$app->eventDispatcher->dispatch(new BaseAddGoodsEvent(), $args);
         $plugins = $args->getResults();
-
+    
         return $this->render('goods-edit', [
             'goods' => $list['goods'],
             'cat_list' => $list['cat_list'],
