@@ -260,7 +260,7 @@ function getCurrentMenu($menu_list, $route, $return = [], $level = 0)
 </div>
 <div class="main">
   
-  <div class="ny-header link-undecorated" style="z-index: 9999">
+  <div class="ny-header link-undecorated" style="z-index: 1049">
         <div class="ny-logo pull-left">
             <a href="<?= $urlManager->createUrl(['mch/default/index']) ?>" class="text-hide" target="_top" title="">
                 <img src="<?=Yii::$app->request->baseUrl . '/statics/mch/images/header-logo.png'?>" alt="" style="width: 123px;margin: -11% 0 0 1%">
