@@ -84,8 +84,8 @@ class GoodsSearchForm extends MchModel
     {
         $keyword = $this->keyword;
         $status = $this->status;
-        $query = Goods::find()->alias('g')->where(['g.store_id' => $this->store->id, 'g.is_delete' => 0, 'g.mch_id' => 0]);
-
+        $query = Goods::find()->alias('g')->where(['g.is_delete' => 0, 'g.mch_id' => 0]);
+//        $query = Goods::find()->alias('g')->where(['g.store_id' => $this->store->id, 'g.is_delete' => 0, 'g.mch_id' => 0]);
         if ($status != null) {
             $query->andWhere('g.status=:status', [':status' => $status]);
         }
@@ -97,7 +97,8 @@ class GoodsSearchForm extends MchModel
         $query->leftJoin(['c' => Cat::tableName()], 'c.id=g.cat_id');
         $query->leftJoin(['gc' => GoodsCat::tableName()], 'gc.goods_id=g.id');
         $query->leftJoin(['c2' => Cat::tableName()], 'gc.cat_id=c2.id');
-        $query->andWhere(['or', ['gc.is_delete' => 0, 'gc.store_id' => $this->store->id], 'isnull(gc.id)']);
+        $query->andWhere(['or', ['gc.is_delete' => 0], 'isnull(gc.id)']);
+//        $query->andWhere(['or', ['gc.is_delete' => 0, 'gc.store_id' => $this->store->id], 'isnull(gc.id)']);
 
         $cat_query = clone $query;
 

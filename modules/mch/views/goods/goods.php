@@ -21,6 +21,7 @@ if (in_array(get_plugin_type(), [0])) {
 } else {
     $show = false;
 }
+$model = Yii::$app->admin->identity;
 ?>
 <style>
     .modal-dialog {
@@ -73,6 +74,19 @@ if (in_array(get_plugin_type(), [0])) {
         background-size: cover;
         background-position: center;
     }
+    .table tbody tr .reWritePrice .price{
+        width: 80%;
+        height: 28px;
+        outline: none;
+        background-color: #fff;
+        border: none;
+    }
+    .table tbody tr:hover .price{
+        background-color: #eceeef;
+    }
+    .table tbody tr .reWritePrice .change{
+        background-color: yellow;
+    }
 </style>
 
 <div class="panel mb-3">
@@ -83,8 +97,9 @@ if (in_array(get_plugin_type(), [0])) {
         ?>
         <div class="mb-3 clearfix">
             <div class="float-left">
-                <a href="<?= $urlManager->createUrl([$urlStr . '/goods-edit']) ?>" class="btn btn-primary"><i
-                        class="iconfont icon-playlistadd"></i>添加商品</a>
+                <?php if ($model->username == 'admin'):?>
+                    <a href="<?= $urlManager->createUrl([$urlStr . '/goods-edit']) ?>" class="btn btn-primary"><i class="iconfont icon-playlistadd"></i>添加商品</a>
+                <?php endif;?>
                 <div class="dropdown float-right ml-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -185,6 +200,7 @@ if (in_array(get_plugin_type(), [0])) {
                 <th>商品类型</th>
                 <th>商品名称</th>
                 <th>商品图片</th>
+                <th>进价</th>
                 <th>售价</th>
                 <th>库存</th>
                 <th>状态</th>
@@ -200,6 +216,7 @@ if (in_array(get_plugin_type(), [0])) {
             <col style="width: 6%">
             <col style="width: 7%">
             <col style="width: 17%">
+            <col style="width: 5%">
             <col style="width: 5%">
             <col style="width: 8%">
             <col style="width: 5%">
@@ -230,7 +247,9 @@ if (in_array(get_plugin_type(), [0])) {
                         title="<?= $goods->getCatListAsString() ?>"><span class="badge badge-info" style="width: 100%"><?= $goods->getCatListAsString() ?></span></td>
                     <td class="text-left ellipsis" data-toggle="tooltip"
                         data-placement="top" title="<?= $goods->name ?>">
-                        <a data-index="<?= $index ?>" style="color: #ffffff;cursor: pointer;" class="btn btn-sm btn-primary edit-good-name">修改</a>
+                        <?php if ($model->username == 'admin'):?>
+                            <a data-index="<?= $index ?>" style="color: #ffffff;cursor: pointer;" class="btn btn-sm btn-primary edit-good-name">修改</a>
+                        <?php endif;?>
                         <?= $goods->name ?>
                     </td>
                     <td class="p-0" style="vertical-align: middle" hidden>
@@ -241,6 +260,7 @@ if (in_array(get_plugin_type(), [0])) {
                         <div class="goods-pic" style="background-image: url(<?= $goods->getGoodsCover() ?>)"></div>
                     </td>
                     <td class="nowrap text-danger"><?= $goods->price ?>元</td>
+                    <td class="nowrap text-danger reWritePrice"><input type="number" name="price" class="price" value="<?= $goods->price ?>" readonly>元</td>
                     <td class="nowrap">
                         <?php if ($goods->use_attr) : ?>
                             <a href="<?= $urlManager->createUrl([$urlStr . '/goods-attr', 'id' => $goods->id]) ?>"><?= $goods->num ?></a>
@@ -283,14 +303,15 @@ if (in_array(get_plugin_type(), [0])) {
                         <img src="<?= $imgurl ?>\statics\images\chengxuma.png" width="20px"
                              onclick="getGoodsQrcode(<?= $goods->id ?>);" data-toggle="modal" data-target="#myModal"
                              title="小程序码">&nbsp;
-
                         <a class="btn btn-sm btn-primary"
                            href="<?= $urlManager->createUrl([$urlStr . '/goods-edit', 'id' => $goods->id]) ?>">修改</a>
                         <a class="btn btn-sm btn-primary copy"
                            data-clipboard-text="/pages/goods/goods?id=<?= $goods->id ?>"
                            href="javascript:" hidden>复制链接</a>
-                        <a class="btn btn-sm btn-danger del"
-                           href="<?= $urlManager->createUrl([$urlStr . '/goods-del', 'id' => $goods->id]) ?>">删除</a>
+                        <?php if ($model->username == 'admin'):?>
+                            <a class="btn btn-sm btn-danger del"
+                               href="<?= $urlManager->createUrl([$urlStr . '/goods-del', 'id' => $goods->id]) ?>">删除</a>
+                        <?php endif;?>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -670,4 +691,42 @@ if (in_array(get_plugin_type(), [0])) {
             });
         });
     })
+</script>
+
+<!--修改商品价格-->
+<script>
+    $(document).bind("click",function(e){
+        var target  = $(e.target);
+        if(target.closest(".reWritePrice").length == 0)
+        {
+            var newPrice = $('.change').val();
+            if (newPrice){
+                changePrice(newPrice);
+            }
+            $(this).find('.price').attr('readonly',true).removeClass('change');
+        }
+    });
+    $('.reWritePrice').on('dblclick',function () {
+        var newPrice = $('.change').val();
+        if (newPrice){
+            changePrice(newPrice);
+        }
+        $('.reWritePrice .price').attr('readonly',true).removeClass('change');
+        $(this).find('.price').attr('readonly',false).addClass('change');
+    })
+
+    function changePrice(store_id,good_id,new_price) {
+        $.ajax({
+            type:"post",
+            url:"",
+            data:{store_id:store_id,good_id:good_id,new_price:new_price},
+            dataType:"json",
+            success:function (res) {
+
+            },
+            error:function () {
+                alert('修改失败');
+            }
+        });
+    }
 </script>
