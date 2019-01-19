@@ -291,17 +291,17 @@ class GoodsForm extends MchModel
             $goods->attributes = $_this_attributes;
 
             //去除部分emoji
-            function userTextEncode($str){
-                if(!is_string($str)) return $str;
-                if(!$str || $str=='undefined')return '';
-                $text = json_encode($str); //暴露出unicode
-                $text = preg_replace_callback("/(\\\u[ed][0-9a-f]{3})/i",function($str){
-                    return addslashes($str[0]);
-                   },$text); //将emoji的unicode留下，其他不动，这里的正则比原答案增加了d，因为我发现我很多emoji实际上是\ud开头的，反而暂时没发现有\ue开头。
-                return json_decode($text);
-            };
+//            function userTextEncode($str){
+//                if(!is_string($str)) return $str;
+//                if(!$str || $str=='undefined')return '';
+//                $text = json_encode($str); //暴露出unicode
+//                $text = preg_replace_callback("/(\\\u[ed][0-9a-f]{3})/i",function($str){
+//                    return addslashes($str[0]);
+//                   },$text); //将emoji的unicode留下，其他不动，这里的正则比原答案增加了d，因为我发现我很多emoji实际上是\ud开头的，反而暂时没发现有\ue开头。
+//                return json_decode($text);
+//            };
 
-            $goods->detail = preg_replace('/\\\u[a-z0-9]{4}/', '', userTextEncode($_this_attributes['detail']));
+//            $goods->detail = preg_replace('/\\\u[a-z0-9]{4}/', '', userTextEncode($_this_attributes['detail']));
 
             $goods->quick_purchase = $this->quick_purchase;
             $goods->is_level = $this->is_level;
@@ -311,6 +311,7 @@ class GoodsForm extends MchModel
             $t = \Yii::$app->db->beginTransaction();
             $goods->type = get_plugin_type();
             if ($goods->save()) {
+
                 //多分类设置
                 GoodsCat::updateAll(['is_delete' => 1], ['goods_id' => $goods->id]);
                 foreach ($cat_id as $index => $value) {
@@ -370,12 +371,14 @@ class GoodsForm extends MchModel
                 $args['post'] = true;
                 \Yii::$app->eventDispatcher->dispatch(new BaseAddGoodsEvent(), $args);
                 $results = $args->getResults();
+
                 if (is_array($results) && count($results) > 0) {
                     foreach ($results as $result) {
                         if ($result['code'] == 0) {
                             $t->commit();
                             return [
                                 'code' => 0,
+                                'id' => $goods->id,
                                 'msg' => '保存成功',
                             ];
                         } else {
@@ -387,6 +390,7 @@ class GoodsForm extends MchModel
                     $t->commit();
                     return [
                         'code' => 0,
+                        'id' => $goods->id,
                         'msg' => '保存成功',
                     ];
                 }

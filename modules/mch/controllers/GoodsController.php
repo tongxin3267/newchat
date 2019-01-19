@@ -117,53 +117,75 @@ class GoodsController extends Controller
      */
     public function actionGoodsEdit($id = 0)
     {
-        $goods = Goods::findOne(['id' => $id, 'store_id' => $this->store->id, 'mch_id' => 0]);
+        $goods = Goods::findOne(['id' => $id,'is_delete'=>0,'store_id' => $this->store->id, 'mch_id' => 0]);
+
         if (!$goods) {
             $goods = new Goods();
-        }
-        $levelForm = new LevelListForm();
-        $levelList = $levelForm->getAllLevel();
 
-        $form = new GoodsForm();
-        if (\Yii::$app->request->isPost) {
-            $model = \Yii::$app->request->post('model');
-            if ($model['quick_purchase'] == 0) {
-                $model['hot_cakes'] = 0;
+            $levelForm = new LevelListForm();
+            $levelList = $levelForm->getAllLevel();
+
+            $add_result = $this->add_good($id,$this->store->id,$goods);
+            if($add_result['code'] != 0){
+                return $add_result;
             }
-            $model['store_id'] = $this->store->id;
-            $form->attributes = $model;
-            $form->attr = \Yii::$app->request->post('attr');
-            $form->goods_card = \Yii::$app->request->post('goods_card');
-            $form->full_cut = \Yii::$app->request->post('full_cut');
-            $form->integral = \Yii::$app->request->post('integral');
+            Goods::updateAll(['good_same_id'=>$add_result['id']],['id'=>$add_result['id']]);
+            $add = Goods::find()->where(['id'=>$add_result['id'],'is_delete'=>0,])->one();
+            $add_all = Goods::find()->select('store_id')->distinct()->all();
+            if($add->store_id){
 
-            // 单规格会员价数据
-            $attr_member_price_List = [];
-            foreach ($levelList as $level) {
-                $keyName = 'member' . $level['level'];
-                $attr_member_price_List[$keyName] = \Yii::$app->request->post($keyName);
+                foreach ($add_all as $k=>$v){
+                    if($v->store_id == $add->store_id){
+                        continue;
+                    }else{
+                        $add_result_2 = $this->add_good(0,$v->store_id,new Goods());
+                        if($add_result['code'] != 0){
+                            return $add_result;
+                        }
+                        Goods::updateAll(['good_same_id'=>$add_result['id']],['id'=>$add_result_2['id']]);
+
+                    }
+                }
+                return $add_result;
             }
-            $form->attr_member_price_List = $attr_member_price_List;
+        }else{
+            $levelForm = new LevelListForm();
+            $levelList = $levelForm->getAllLevel();
+            if (\Yii::$app->request->isPost) {
+                if(\Yii::$app->admin->id == 1){
 
-            $form->goods = $goods;
-            $form->plugins = \Yii::$app->request->post('plugins');
-            $form->mall_id = \Yii::$app->request->post('mall_id');//P_ADD
+                    $GOOD_all = Goods::find()->where(['good_same_id'=>$goods->good_same_id ,'is_delete'=>0,])->all();
 
-			//P_ADD start
-			$config = PrinceConfig::findOne(['code' => 'cloud_store_id', 'store_id' =>0]);
-			$cloud_store_id=$config->value;
-			if(($cloud_store_id==$this->store->id) && $id>0){
-				$relation_goods = PrinceGoodsRelation::find()->where(['cloud_goods_id' => $id,'type' => 0])->all();
-				foreach ($relation_goods as $index => $value) {
-					$config = PrinceConfig::findOne(['code' => 'price_rate', 'store_id' => $value['store_id']]);
-					$price_rate=$config->value;
-					$price_rate=$price_rate>0?$price_rate:1;
-            		$res = Goods::updateAll(['price' => $model['price']*$price_rate,'original_price' => $model['original_price'],'cost_price' => $model['cost_price']],'id='.$value['goods_id']);
-				}
-			}
-			//P_ADD end
-            return $form->save();
+                    foreach ($GOOD_all as $k=>$v){
+                        $good =  Goods::findOne(['id' => $v->id, 'is_delete'=>0, 'mch_id' => 0]);
+                        $edit_result = $this->add_good($v->id,$good->store_id,$good);
+                        if($edit_result['code'] != 0){
+                            return $edit_result;
+                        }
+                    }
+                    return $edit_result;
+                }else{
+                    $model = \Yii::$app->request->post('model');
+
+                    $edir_res = Goods::updateAll(['price'=>$model['price']],['id'=>$goods->id]);
+                    if($edir_res){
+                        $re =[];
+                        $re['code'] = 0;
+                        $re['msg'] = '保存成功';
+                        return $re;
+                    }else{
+                        $re =[];
+                        $re['code'] = 1;
+                        $re['msg'] = '保存失败';
+                        return $re;
+                    }
+                }
+            }
+
         }
+
+
+
 
         $searchForm = new GoodsSearchForm();
         $searchForm->goods = $goods;
@@ -200,20 +222,39 @@ class GoodsController extends Controller
                 'msg' => '商品删除失败或已删除',
             ];
         }
-        $goods->is_delete = 1;
-        if ($goods->save()) {
+
+        $GOOD_all = Goods::find()->where(['good_same_id'=>$goods->good_same_id])->all();
+
+        if($goods->store_id){
+            foreach ($GOOD_all as $k=>$v){
+                $edit = Goods::updateAll(['is_delete'=>1],['id'=>$v->id]);
+                if(!$edit){
+                    return [
+                        'code' => 1,
+                        'msg' => "删除失败",
+                    ];
+                }
+            }
             return [
                 'code' => 0,
                 'msg' => '成功',
             ];
-        } else {
-            foreach ($goods->errors as $errors) {
-                return [
-                    'code' => 1,
-                    'msg' => $errors[0],
-                ];
-            }
+
         }
+//        $goods->is_delete = 1;
+//        if ($goods->save()) {
+//            return [
+//                'code' => 0,
+//                'msg' => '成功',
+//            ];
+//        } else {
+//            foreach ($goods->errors as $errors) {
+//                return [
+//                    'code' => 1,
+//                    'msg' => $errors[0],
+//                ];
+//            }
+//        }
     }
 
     //商品上下架
@@ -601,5 +642,58 @@ class GoodsController extends Controller
             'code' => 0,
             'msg' => '修改成功'
         ];
+    }
+
+    public function add_good($id = 0,$good_same_id,$goods){
+
+
+        $levelForm = new LevelListForm();
+        $levelList = $levelForm->getAllLevel();
+
+        $form = new GoodsForm();
+        if (\Yii::$app->request->isPost) {
+            $model = \Yii::$app->request->post('model');
+
+            if ($model['quick_purchase'] == 0) {
+                $model['hot_cakes'] = 0;
+            }
+
+            $model['store_id'] = $good_same_id;
+
+
+            $form->attributes = $model;
+            $form->attr = \Yii::$app->request->post('attr');
+            $form->goods_card = \Yii::$app->request->post('goods_card');
+            $form->full_cut = \Yii::$app->request->post('full_cut');
+            $form->integral = \Yii::$app->request->post('integral');
+
+            // 单规格会员价数据
+            $attr_member_price_List = [];
+            foreach ($levelList as $level) {
+                $keyName = 'member' . $level['level'];
+                $attr_member_price_List[$keyName] = \Yii::$app->request->post($keyName);
+            }
+            $form->attr_member_price_List = $attr_member_price_List;
+
+            $form->goods = $goods;
+            $form->plugins = \Yii::$app->request->post('plugins');
+            $form->mall_id = \Yii::$app->request->post('mall_id');//P_ADD
+
+            //P_ADD start
+            $config = PrinceConfig::findOne(['code' => 'cloud_store_id', 'store_id' =>0]);
+            $cloud_store_id=$config->value;
+            if(($cloud_store_id==$this->store->id) && $id>0){
+                $relation_goods = PrinceGoodsRelation::find()->where(['cloud_goods_id' => $id,'type' => 0])->all();
+                foreach ($relation_goods as $index => $value) {
+                    $config = PrinceConfig::findOne(['code' => 'price_rate', 'store_id' => $value['store_id']]);
+                    $price_rate=$config->value;
+                    $price_rate=$price_rate>0?$price_rate:1;
+                    $res = Goods::updateAll(['price' => $model['price']*$price_rate,'original_price' => $model['original_price'],'cost_price' => $model['cost_price']],'id='.$value['goods_id']);
+                }
+            }
+            //P_ADD end
+            return $form->save();
+
+        }
     }
 }
