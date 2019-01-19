@@ -708,7 +708,7 @@ $model = Yii::$app->admin->identity;
             var newPrice = $('.change').val();
             if (newPrice){
                 var gid = $('.change').attr('itemid');
-                changePrice(gid,newPrice);
+                // changePrice(gid,newPrice);
             }
             $(this).find('.price').attr('readonly',true).removeClass('change');
         }
@@ -717,7 +717,7 @@ $model = Yii::$app->admin->identity;
         var newPrice = $('.change').val();
         if (newPrice){
             var gid = $('.change').attr('itemid');
-            changePrice(gid,newPrice);
+            // changePrice(gid,newPrice);
         }
         $('.reWritePrice .price').attr('readonly',true).removeClass('change');
         $(this).find('.price').attr('readonly',false).addClass('change');
@@ -726,7 +726,7 @@ $model = Yii::$app->admin->identity;
     function changePrice(good_id,new_price) {
         $.ajax({
             type:"post",
-            url:"<?= $urlManager->createUrl('price_edit') ?>",
+            //url:"<?//= $urlManager->createUrl('price_edit') ?>//",
             data:{store_id:store_id,good_id:good_id,new_price:new_price},
             dataType:"json",
             success:function (res) {
