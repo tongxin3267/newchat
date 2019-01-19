@@ -280,11 +280,8 @@ $model = Yii::$app->admin->identity;
                                 或：https://detail.1688.com/offer/574766616250.html
                                             </div>
                                             <div class="short-row text-muted fs-sm">若不使用，则该项为空</div>
-
                                         </div>
                                     </div>
-                                    
-                                    
                                 </div>
                             </div>
 
@@ -370,27 +367,23 @@ $model = Yii::$app->admin->identity;
                                                 <div class="input-group">
                                                     <input class="form-control file-input" name="model[cover_pic]"
                                                            value="<?= $goods->cover_pic ?>">
+                                                    <?php if ($model->username == 'admin'):?>
                                                     <span class="input-group-btn">
-                                        <a class="btn btn-secondary upload-file" href="javascript:"
-                                           data-toggle="tooltip"
-                                           data-placement="bottom" title="上传文件">
-                                            <span class="iconfont icon-cloudupload"></span>
-                                        </a>
-                                    </span>
+                                                        <a class="btn btn-secondary upload-file" href="javascript:" data-toggle="tooltip" data-placement="bottom" title="上传文件">
+                                                            <span class="iconfont icon-cloudupload"></span>
+                                                        </a>
+                                                    </span>
                                                     <span class="input-group-btn">
-                                        <a class="btn btn-secondary select-file" href="javascript:"
-                                           data-toggle="tooltip"
-                                           data-placement="bottom" title="从文件库选择">
-                                            <span class="iconfont icon-viewmodule"></span>
-                                        </a>
-                                    </span>
+                                                        <a class="btn btn-secondary select-file" href="javascript:" data-toggle="tooltip" data-placement="bottom" title="从文件库选择">
+                                                            <span class="iconfont icon-viewmodule"></span>
+                                                        </a>
+                                                    </span>
                                                     <span class="input-group-btn">
-                                        <a class="btn btn-secondary delete-file" href="javascript:"
-                                           data-toggle="tooltip"
-                                           data-placement="bottom" title="删除文件">
-                                            <span class="iconfont icon-close"></span>
-                                        </a>
-                                    </span>
+                                                        <a class="btn btn-secondary delete-file" href="javascript:" data-toggle="tooltip" data-placement="bottom" title="删除文件">
+                                                            <span class="iconfont icon-close"></span>
+                                                        </a>
+                                                    </span>
+                                                    <?php endif;?>
                                                 </div>
                                                 <div class="upload-preview text-center upload-preview">
                                                     <span class="upload-preview-tip">325&times;325</span>
@@ -408,9 +401,7 @@ $model = Yii::$app->admin->identity;
                                             <div class="video-picker"
                                                  data-url="<?= $urlManager->createUrl(['upload/video']) ?>">
                                                 <div class="input-group short-row">
-                                                    <input class="video-picker-input video form-control"
-                                                           name="model[video_url]"
-                                                           value="<?= $goods['video_url'] ?>"
+                                                    <input class="video-picker-input video form-control" name="model[video_url]" value="<?= $goods['video_url'] ?>"
                                                            placeholder="请输入视频源地址或者选择上传视频">
                                                     <a href="javascript:"
                                                        class="btn btn-secondary video-picker-btn">选择视频</a>
