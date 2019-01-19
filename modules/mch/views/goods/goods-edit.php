@@ -15,6 +15,7 @@ $returnUrl = Yii::$app->request->referrer;
 if (!$returnUrl) {
     $returnUrl = $urlManager->createUrl([get_plugin_url() . '/goods']);
 }
+$model = Yii::$app->admin->identity;
 ?>
 <script src="<?= $staticBaseUrl ?>/mch/js/uploadVideo.js"></script>
 <script src="<?= Yii::$app->request->baseUrl ?>/statics/mch/js/datetime.js?v=2.5.8"></script>
@@ -232,7 +233,9 @@ if (!$returnUrl) {
                                 <div>
                                     <span>选择分类</span>
                                     <br>
-                                    <a class="addcat" href="javascript:">添加新分类</a>
+                                    <?php if ($model->username == 'admin'):?>
+                                        <a class="addcat" href="javascript:">添加新分类</a>
+                                    <?php endif;?>
                                     <span class="step-location" id="step1"></span>
                                 </div>
                                 <div>
@@ -245,6 +248,8 @@ if (!$returnUrl) {
                                                 <input readonly class="form-control cat-name" v-model="item.cat_name">
                                                 <input type="hidden" name="model[cat_id][]" class="form-control cat-id"
                                                        v-model="item.cat_id">
+
+                                                <?php if ($model->username == 'admin'):?>
                                                 <span class="input-group-btn">
                             <a class="btn btn-secondary cat-modal" href="javascript:" data-toggle="modal"
                                data-target="#catModal" :data-index="i">选择分类</a>
@@ -252,6 +257,7 @@ if (!$returnUrl) {
                                                 <span class="input-group-btn">
                             <a class="btn btn-danger delete-cat" href="javascript:" :data-index="i">删除</a>
                         </span>
+                                                <?php endif;?>
                                             </div>
                                         </div>
                                     </div>
@@ -263,7 +269,9 @@ if (!$returnUrl) {
                                             <div class="input-group short-row">
                                 <input class="form-control copy-url" placeholder="请输入商品详情地址连接">
                                                 <span class="input-group-btn">
+                                                    <?php if ($model->username == 'admin'):?>
                                     <a class="btn btn-secondary copy-btn" href="javascript:">立即获取</a>
+                                                    <?php endif;?>
                                 </span>
                                             </div>
                                             <div class="short-row text-muted fs-sm">
@@ -272,7 +280,7 @@ if (!$returnUrl) {
                                 或：https://detail.1688.com/offer/574766616250.html
                                             </div>
                                             <div class="short-row text-muted fs-sm">若不使用，则该项为空</div>
-                                           
+
                                         </div>
                                     </div>
                                     
