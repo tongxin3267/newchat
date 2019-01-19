@@ -201,7 +201,9 @@ $model = Yii::$app->admin->identity;
                 <th>商品名称</th>
                 <th>商品图片</th>
                 <th>进价</th>
-                <th>售价</th>
+                <?php if ($model->username != 'admin'):?>
+                    <th>售价</th>
+                <?php endif;?>
                 <th>库存</th>
                 <th>状态</th>
                 <?php if ($show): ?>
@@ -217,7 +219,9 @@ $model = Yii::$app->admin->identity;
             <col style="width: 7%">
             <col style="width: 17%">
             <col style="width: 5%">
-            <col style="width: 5%">
+            <?php if ($model->username != 'admin'):?>
+                <col style="width: 5%">
+            <?php endif; ?>
             <col style="width: 8%">
             <col style="width: 5%">
             <col style="width: 8%">
@@ -260,7 +264,9 @@ $model = Yii::$app->admin->identity;
                         <div class="goods-pic" style="background-image: url(<?= $goods->getGoodsCover() ?>)"></div>
                     </td>
                     <td class="nowrap text-danger"><?= $goods->price ?>元</td>
-                    <td class="nowrap text-danger reWritePrice"><input type="number" name="price" class="price" value="<?= $goods->price ?>" readonly>元</td>
+                    <?php if ($model->username != 'admin'):?>
+                        <td class="nowrap text-danger reWritePrice"><input type="number" name="price" class="price" itemid="<?= $goods->id ?>" value="<?= $goods->price ?>" readonly>元</td>
+                    <?php endif;?>
                     <td class="nowrap">
                         <?php if ($goods->use_attr) : ?>
                             <a href="<?= $urlManager->createUrl([$urlStr . '/goods-attr', 'id' => $goods->id]) ?>"><?= $goods->num ?></a>
@@ -701,7 +707,8 @@ $model = Yii::$app->admin->identity;
         {
             var newPrice = $('.change').val();
             if (newPrice){
-                changePrice(newPrice);
+                var gid = $('.change').attr('itemid');
+                changePrice(gid,newPrice);
             }
             $(this).find('.price').attr('readonly',true).removeClass('change');
         }
@@ -709,16 +716,17 @@ $model = Yii::$app->admin->identity;
     $('.reWritePrice').on('dblclick',function () {
         var newPrice = $('.change').val();
         if (newPrice){
-            changePrice(newPrice);
+            var gid = $('.change').attr('itemid');
+            changePrice(gid,newPrice);
         }
         $('.reWritePrice .price').attr('readonly',true).removeClass('change');
         $(this).find('.price').attr('readonly',false).addClass('change');
-    })
+    });
 
-    function changePrice(store_id,good_id,new_price) {
+    function changePrice(good_id,new_price) {
         $.ajax({
             type:"post",
-            url:"",
+            url:"<?= $urlManager->createUrl('price_edit') ?>",
             data:{store_id:store_id,good_id:good_id,new_price:new_price},
             dataType:"json",
             success:function (res) {
