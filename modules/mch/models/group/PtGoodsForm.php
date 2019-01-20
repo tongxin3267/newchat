@@ -309,6 +309,96 @@ class PtGoodsForm extends MchModel
     }
 
     /**
+     * 商品编辑简易版
+     */
+    public function goodSave(){
+        if ($this->validate()) {
+            if (!is_array($this->goods_pic_list) || empty($this->goods_pic_list) || count($this->goods_pic_list) == 0) {
+                return [
+                    'code' => 1,
+                    'msg' => '商品图片不能为空',
+                ];
+            }
+
+            if (!$this->use_attr && ($this->goods_num === null || $this->goods_num === '')) {
+                return [
+                    'code' => 1,
+                    'msg' => '请填写商品库存',
+                ];
+            }
+
+            if (!$this->original_price) {
+                $this->original_price = $this->price;
+            }
+
+            if ($this->original_price > 99999999.99) {
+                return [
+                    'code' => 1,
+                    'msg' => '商品原价超过限制',
+                ];
+            }
+            if ($this->price > 99999999.99) {
+                return [
+                    'code' => 1,
+                    'msg' => '商品售价超过限制',
+                ];
+            }
+
+
+            if (!$this->virtual_sales) {
+                $this->virtual_sales = 0;
+            }
+
+            if ($goods->save()) {
+                PtGoodsPic::updateAll(['is_delete' => 1], ['goods_id' => $goods->id]);
+                foreach ($this->goods_pic_list as $pic_url) {
+                    $goods_pic = new PtGoodsPic();
+                    $goods_pic->goods_id = $goods->id;
+                    $goods_pic->pic_url = $pic_url;
+                    $goods_pic->is_delete = 0;
+                    $goods_pic->save();
+                }
+                $this->setAttr($goods);
+                $this->goods_share->store_id = $this->store_id;
+                $this->goods_share->type = 0;
+                $this->goods_share->goods_id = $goods->id;
+                $this->goods_share->individual_share = $this->individual_share;
+                $this->goods_share->share_commission_first = $this->share_commission_first;
+                $this->goods_share->share_commission_second = $this->share_commission_second;
+                $this->goods_share->share_commission_third = $this->share_commission_third;
+                $this->goods_share->share_type = $this->share_type;
+                $this->goods_share->rebate = $this->rebate;
+                $this->goods_share->attr_setting_type = $this->attr_setting_type;
+                $this->goods_share->save();
+                //P_ADD start
+                if($this->mall_id){
+                    $goods_relation=PrinceGoodsRelation::findOne(['goods_id' => $this->mall_id, 'type' => 0, 'store_id' => $this->store_id]);
+                    if($goods_relation){
+                        $pt_goods_relation=PrinceGoodsRelation::findOne(['goods_id' => $goods->id, 'type' => 2, 'store_id' => $this->store_id]);
+                        if(!$pt_goods_relation){
+                            $pt_goods_relation=new PrinceGoodsRelation();
+                        }
+                        $pt_goods_relation->store_id = $this->store_id;
+                        $pt_goods_relation->cloud_goods_id = $goods_relation->cloud_goods_id;
+                        $pt_goods_relation->goods_id = $goods->id;
+                        $pt_goods_relation->type = 2;
+                        $pt_goods_relation->save(false);
+                    }
+                }
+                //P_ADD end
+                return [
+                    'code' => 0,
+                    'msg' => '保存成功',
+                ];
+            } else {
+                return $this->getErrorResponse($goods);
+            }
+        } else {
+            return $this->errorResponse;
+        }
+    }
+
+    /**
      * @param Goods $goods
      */
     private function setAttr($goods)

@@ -1578,8 +1578,16 @@ class AppController extends Controller
             //store添加首页模块布局及配置
             $storeOne = $store->findOne($store_id);
             $storeFirst = $store->findOne(1);
-            $cat1_id = $cat->find()->where(['store_id'=>1,'parent_id'=>0,'is_delete'=>0,'is_show'=>1])->one();
-            $storeOne->home_page_module = '[{"name":"notice"},{"name":"search"},{"name":"banner"},{"name":"nav"},{"name":"topic"},{"name":"block-'.$homeBlockId.'"},{"name":"coupon"},{"name":"mch"},{"name":"pintuan"},{"name":"yuyue"},{"name":"single_cat-'.$cat1_id.'"}]';
+            $cat1 = $cat->find()->where(['store_id'=>1,'parent_id'=>0,'is_delete'=>0,'is_show'=>1])->one();
+            if ($homeBlockId && $cat1){
+                $storeOne->home_page_module = '[{"name":"notice"},{"name":"search"},{"name":"banner"},{"name":"nav"},{"name":"topic"},{"name":"block-'.$homeBlockId.'"},{"name":"coupon"},{"name":"mch"},{"name":"single_cat-'.$cat1->id.'"}]';
+            }else if ($homeBlockId && !$cat1){
+                $storeOne->home_page_module = '[{"name":"notice"},{"name":"search"},{"name":"banner"},{"name":"nav"},{"name":"topic"},{"name":"block-'.$homeBlockId.'"},{"name":"coupon"},{"name":"mch"}]';
+            }else if (!$homeBlockId && $cat1){
+                $storeOne->home_page_module = '[{"name":"notice"},{"name":"search"},{"name":"banner"},{"name":"nav"},{"name":"topic"},{"name":"coupon"},{"name":"mch"},{"name":"single_cat-'.$cat1->id.'"}]';
+            }else{
+                $storeOne->home_page_module = '[{"name":"notice"},{"name":"search"},{"name":"banner"},{"name":"nav"},{"name":"topic"},{"name":"coupon"},{"name":"mch"}]';
+            }
             $storeOne->show_customer_service = $storeFirst->show_customer_service;
             $storeOne->after_sale_time = $storeFirst->after_sale_time;
             $storeOne->cat_style = $storeFirst->cat_style;
