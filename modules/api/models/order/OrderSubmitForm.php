@@ -58,14 +58,14 @@ class OrderSubmitForm extends OrderForm
             ];
         }
 
-
-
         $order_id_list = [];
         $level = $this->level;
         $address = (object)($this->address);
 
         $t = \Yii::$app->db->beginTransaction();
+
         foreach ($mchListData as &$mch) {
+
             $checkMchData = $this->checkMchData($mch);
             if ($this->use_integral == 2) {
                 $mch['integral'] = ['forehead' => 0, 'forehead_integral' => 0];
@@ -133,6 +133,13 @@ class OrderSubmitForm extends OrderForm
                 $order->express_price = 0;
             }
             if ($order->save()) {
+                $a = 0;
+                foreach ($mch['goods_list'] as $goods) {
+                    $stock[$a]['goods_id'] = $goods['goods_id'];
+                    $stock[$a]['num'] = $goods['num'];
+                    $a++;
+                }
+                 $stocks[] = $stock;
 
                 // 处理订单生成之后其他相关数据
                 $orderRes = $this->insertData($mch, $order);
@@ -149,22 +156,31 @@ class OrderSubmitForm extends OrderForm
                 return $this->getErrorResponse($order);
             }
         }
+
         if (count($order_id_list) > 0) {
             $t->commit();
             if (count($order_id_list) > 1) {//多个订单合并
+
                 return [
                     'code' => 0,
                     'msg' => '订单提交成功',
                     'data' => (object)[
                         'order_id_list' => $order_id_list,
                     ],
+                    'stocks' => (object)[
+                        'stocks' => $stocks,
+                    ],
                 ];
             } else {//单个订单
+
                 return [
                     'code' => 0,
                     'msg' => '订单提交成功',
                     'data' => (object)[
                         'order_id' => $order_id_list[0],
+                    ],
+                    'stocks' => (object)[
+                        'stock' => $stocks[0],
                     ],
                 ];
             }
@@ -408,6 +424,7 @@ class OrderSubmitForm extends OrderForm
                 }
             }
         }
+
         return ['code' => 0, 'msg' => ''];
     }
 
@@ -582,4 +599,6 @@ class OrderSubmitForm extends OrderForm
             'msg' => ''
         ];
     }
+
+
 }

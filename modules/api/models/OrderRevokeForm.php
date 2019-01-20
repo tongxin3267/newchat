@@ -75,14 +75,34 @@ class OrderRevokeForm extends ApiModel
 
         $t = \Yii::$app->db->beginTransaction();
 
+
         //库存恢复
         foreach ($order_detail_list as $order_detail) {
+
             $goods = Goods::findOne($order_detail->goods_id);
             $attr_id_list = [];
             foreach (json_decode($order_detail->attr) as $item) {
                 array_push($attr_id_list, $item->attr_id);
             }
             $goods->numAdd($attr_id_list, $order_detail->num);
+
+            $query = new \yii\db\Query();
+
+            $query->from('xcxmall_goods')->where(['good_same_id'=>$goods->good_same_id ,'is_delete'=>0,]);
+            foreach($query->each() as $data){
+                if($data['id'] == $order_detail->goods_id){
+                    continue;
+                }else{
+                    $edir_res = Goods::updateAll(['attr'=>$goods->attr],['id'=>$data['id']]);
+                    if (!$edir_res){
+                        $back = [
+                            'code' => 1,
+                            'msg' => '订单取消失败',
+                        ];
+                        return new BaseApiResponse($back);
+                    }
+                }
+            }
             /*
             if (!$goods->numAdd($attr_id_list, $order_detail->num)) {
                 $t->rollBack();
@@ -93,6 +113,7 @@ class OrderRevokeForm extends ApiModel
             }
             */
         }
+
 
         // 用户积分恢复
         $integral = json_decode($order->integral)->forehead_integral;

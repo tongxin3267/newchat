@@ -11,6 +11,7 @@ namespace app\modules\api\controllers;
 use app\opening\ApiResponse;
 use app\opening\BaseApiResponse;
 use app\models\Order;
+use app\models\Goods;
 use app\modules\api\behaviors\LoginBehavior;
 use app\modules\api\models\ExpressDetailForm;
 use app\modules\api\models\LocationForm;
@@ -82,13 +83,61 @@ class OrderController extends Controller
     //新-订单提交
     public function actionNewSubmit()
     {
+        $query = new \yii\db\Query();
         $form = new \app\modules\api\models\order\OrderSubmitForm();
         $form->attributes = \Yii::$app->request->post();
         $form->store = $this->store;
         $form->store_id = $this->store->id;
         $form->user_id = \Yii::$app->user->id;
         $form->user = \Yii::$app->user->identity;
-        return new BaseApiResponse($form->save());
+        $re = $form->save();
+        if($re['stock']){
+            foreach ($re['stock']->stock as $k=>$v){
+                $stock = Goods::find()->where(['id'=>$v['goods_id'],'is_delete'=>0,])->one();
+
+                $query->from('xcxmall_goods')->where(['good_same_id'=>$stock->good_same_id ,'is_delete'=>0,]);
+                foreach($query->each() as $data){
+                    if($data['id'] == $v['goods_id']){
+                        continue;
+                    }else{
+                        $edir_res = Goods::updateAll(['attr'=>$stock->attr],['id'=>$data['id']]);
+                        if (!$edir_res){
+                            $back = [
+                                'code' => 1,
+                                'msg' => '订单提交失败',
+                            ];
+                            return new BaseApiResponse($back);
+                        }
+                    }
+
+                }
+            }
+        }elseif ($re['stocks']){
+            foreach ($re['stocks']->stocks as $k1 =>$v1){
+                foreach ($v1 as $k=>$v){
+                    $stock = Goods::find()->where(['id'=>$v['goods_id'],'is_delete'=>0,])->one();
+
+                    $query->from('xcxmall_goods')->where(['good_same_id'=>$stock->good_same_id ,'is_delete'=>0,]);
+                    foreach($query->each() as $data){
+                        if($data['id'] == $v['goods_id']){
+                            continue;
+                        }else{
+                            $edir_res = Goods::updateAll(['attr'=>$stock->attr],['id'=>$data['id']]);
+                            if (!$edir_res){
+                                $back = [
+                                    'code' => 1,
+                                    'msg' => '订单提交失败',
+                                ];
+                                return new BaseApiResponse($back);
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        return new BaseApiResponse($re);
     }
 
     //订单支付数据
