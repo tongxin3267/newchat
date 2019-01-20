@@ -210,6 +210,37 @@ if (!$returnUrl) {
         max-width: 160px;
         width: 160px;
     }
+
+    .cover{
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color:rgba(255,255,255,0);
+        position: absolute;
+        z-index:998;
+        float: left;
+    }
+    .over{
+        z-index: 999;
+    }
+    .cover2{
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color:rgba(255,255,255,0);
+        position: absolute;
+        z-index:998;
+        float: left;
+    }
+    .cover3{
+        display: block;
+        width: 362px;
+        height: 97%;
+        background-color:rgba(255,255,255,0);
+        position: absolute;
+        z-index:998;
+        float: left;
+    }
 </style>
 
 <div id="one_menu_bar">
@@ -232,7 +263,7 @@ if (!$returnUrl) {
             <div class="panel mb-3">
                 <div class="panel-header"><?= $this->title ?></div>
                 <div class="panel-body">
-                    <div class="head">
+                    <div class="head" style="z-index: 1000">
                         <div class="head-content" flex="dir:left">
                             <a flex="cross:center" class="head-step" href="#step1">选择分类</a>
                             <a flex="cross:center" class="head-step" href="#step2">基本信息</a>
@@ -262,25 +293,25 @@ if (!$returnUrl) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row" hidden>
-                                <div class="col-3 text-right">
-                                    <label class=" col-form-label">淘宝一键采集</label>
-                                </div>
-                                <div class="col-9">
-                                    <div class="input-group short-row">
-                                        <input class="form-control copy-url" placeholder="请输入淘宝商品详情地址连接">
-                                        <span class="input-group-btn">
-                                    <a class="btn btn-secondary copy-btn" href="javascript:">立即获取</a>
-                                </span>
-                                    </div>
-                                    <div class="short-row text-muted fs-sm">
-                                        例如：商品链接为:http://item.taobao.com/item.htm?id=522155891308
-                                        或:http://detail.tmall.com/item.htm?id=522155891308
-                                    </div>
-                                    <div class="short-row text-muted fs-sm">若不使用，则该项为空</div>
-                                    <div class="copy-error text-danger fs-sm" hidden></div>
-                                </div>
-                            </div>
+<!--                            <div class="form-group row" hidden>-->
+<!--                                <div class="col-3 text-right">-->
+<!--                                    <label class=" col-form-label">淘宝一键采集</label>-->
+<!--                                </div>-->
+<!--                                <div class="col-9">-->
+<!--                                    <div class="input-group short-row">-->
+<!--                                        <input class="form-control copy-url" placeholder="请输入淘宝商品详情地址连接">-->
+<!--                                        <span class="input-group-btn">-->
+<!--                                    <a class="btn btn-secondary copy-btn" href="javascript:">立即获取</a>-->
+<!--                                </span>-->
+<!--                                    </div>-->
+<!--                                    <div class="short-row text-muted fs-sm">-->
+<!--                                        例如：商品链接为:http://item.taobao.com/item.htm?id=522155891308-->
+<!--                                        或:http://detail.tmall.com/item.htm?id=522155891308-->
+<!--                                    </div>-->
+<!--                                    <div class="short-row text-muted fs-sm">若不使用，则该项为空</div>-->
+<!--                                    <div class="copy-error text-danger fs-sm" hidden></div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         
                             <div class="form-group row">
                                 <div class="col-3 text-right">
@@ -294,7 +325,7 @@ if (!$returnUrl) {
                                     <a class="btn btn-secondary mall-copy-btn" href="javascript:">立即获取</a>
                                 </span>
                                     </div>
-                                    <div class="short-row text-muted fs-sm">若不使用，则该项为空</div>
+<!--                                    <div class="short-row text-muted fs-sm">若不使用，则该项为空</div>-->
                                     <div class="copy-error text-danger fs-sm" hidden></div>
                                 </div>
                             </div>
@@ -307,6 +338,7 @@ if (!$returnUrl) {
                             <span class="step-location" id="step2"></span>
                         </div>
                         <div>
+                            <span class="cover"></span>
                             <div class="form-group row">
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">商品名称</label>
@@ -455,7 +487,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">团购价</label>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 over">
                                     <div class="input-group short-row">
                                         <input type="number" step="0.01" class="form-control"
                                                name="model[price]" min="0.01"
@@ -480,7 +512,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">团长优惠</label>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 over">
                                     <input type="number" step="0.01" class="form-control short-row"
                                            name="model[colonel]" min="0"
                                            value="<?= $goods['colonel'] ? $goods['colonel'] : 1 ?>">
@@ -491,7 +523,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label">是否允许单买</label>
                                 </div>
-                                <div class="col-9 col-form-label">
+                                <div class="col-9 col-form-label over">
                                     <label class="custom-control custom-radio">
                                         <input <?= $goods['is_only'] == 1 ? 'checked' : 'checked' ?> value="1"
                                                                                                      name="model[is_only]"
@@ -540,7 +572,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">拼团限时</label>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 over">
                                     <input type="text" class="form-control short-row"
                                            name="model[limit_time]"
                                            id="limit_time"
@@ -553,7 +585,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">拼团人数</label>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 over">
                                     <input type="number" step="1" class="form-control short-row"
                                            name="model[group_num]" min="2"
                                            value="<?= $goods['group_num'] ? $goods['group_num'] : 2 ?>">
@@ -565,7 +597,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">拼团时间 </label>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 over">
                                     <div class="input-group short-row">
                                         <input type="number" step="1" class="form-control"
                                                name="model[grouptime]" min="1"
@@ -580,7 +612,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">购买拼团次数限制</label>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 over">
                                     <input type="number" step="1" class="form-control short-row"
                                            name="model[buy_limit]" min="2"
                                            value="<?= $goods['buy_limit'] ? $goods['buy_limit'] : 0 ?>">
@@ -591,7 +623,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">单次购买数量限制</label>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 over">
                                     <input type="number" step="1" class="form-control short-row"
                                            name="model[one_buy_limit]" min="2"
                                            value="<?= $goods['one_buy_limit'] ? $goods['one_buy_limit'] : 0 ?>">
@@ -602,7 +634,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label">服务内容</label>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 over">
                                     <input class="form-control short-row" name="model[service]"
                                            value="<?= $goods['service'] ?>">
                                     <div class="fs-sm text-muted">例子：正品保障,极速发货,7天退换货。多个请使用英文逗号<kbd>,</kbd>分隔</div>
@@ -613,7 +645,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label">运费设置</label>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 over">
                                     <select class="form-control short-row" name="model[freight]">
                                         <option value="0">默认模板</option>
                                         <?php foreach ($postageRiles as $p) : ?>
@@ -627,7 +659,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label">送货方式</label>
                                 </div>
-                                <div class="col-9 col-form-label">
+                                <div class="col-9 col-form-label over">
                                     <label class="custom-control custom-radio">
                                         <input <?= $goods['type'] == 1 ? 'checked' : 'checked' ?> value="1"
                                                                                                   name="model[type]"
@@ -666,6 +698,7 @@ if (!$returnUrl) {
 
                         <div>
                             <!-- 无规格 -->
+                            <span class="cover2"></span>
                             <div class="form-group row">
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">商品库存</label>
@@ -951,7 +984,8 @@ if (!$returnUrl) {
                                     <label class=" col-form-label required">图文详情</label>
                                 </div>
                                 <div class="col-9">
-                            <textarea class="short-row" id="editor"
+                                    <span class="cover3"></span>
+                                    <textarea class="short-row" id="editor"
                                       name="model[detail]"><?= $goods['detail'] ?></textarea>
                                 </div>
                             </div>

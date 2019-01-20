@@ -186,7 +186,7 @@ $this->params['is_group'] = 1;
                     </td>
                     <td class="text-left ellipsis" data-toggle="tooltip"
                         data-placement="top" title="<?= $goods['name'] ?>">
-                        <a data-index="<?= $index ?>" style="color: #ffffff;cursor: pointer;" class="btn btn-sm btn-primary edit-good-name">修改</a>
+<!--                        <a data-index="--><?//= $index ?><!--" style="color: #ffffff;cursor: pointer;" class="btn btn-sm btn-primary edit-good-name">修改</a>-->
                         <?= $goods['name'] ?>
                     </td>
                     <td class="p-0" style="vertical-align: middle">

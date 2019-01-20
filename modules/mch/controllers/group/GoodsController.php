@@ -299,24 +299,47 @@ class GoodsController extends Controller
 
         if (\Yii::$app->request->isPost) {
             $model = \Yii::$app->request->post('model');
-            $model['store_id'] = $this->store->id;
-            $model['limit_time'] = $model['limit_time'] ? strtotime($model['limit_time']) : 0;
-            $form = new PtGoodsForm();
-            $form->attributes = $model;
-            $form->attr = \Yii::$app->request->post('attr');
-            $form->goods = $goods;
+            var_dump($model);exit;
+//            $model['store_id'] = $this->store->id;
+//            $model['limit_time'] = $model['limit_time'] ? strtotime($model['limit_time']) : 0;
+//            $form = new PtGoodsForm();
+//            $form->attributes = $model;
+//            $form->attr = \Yii::$app->request->post('attr');
+//            $form->goods = $goods;
 
             // 单规格会员价数据
-            $attr_member_price_List = [];
-            foreach ($levelList as $level) {
-                $keyName = 'member' . $level['level'];
-                $attr_member_price_List[$keyName] = \Yii::$app->request->post($keyName);
-            }
-            $form->attr_member_price_List = $attr_member_price_List;
+//            $attr_member_price_List = [];
+//            foreach ($levelList as $level) {
+//                $keyName = 'member' . $level['level'];
+//                $attr_member_price_List[$keyName] = \Yii::$app->request->post($keyName);
+//            }
+//            $form->attr_member_price_List = $attr_member_price_List;
+//
+//            $form->goods_share = $goods_share;
+//            $form->mall_id = \Yii::$app->request->post('mall_id');//P_ADD
 
-            $form->goods_share = $goods_share;
-            $form->mall_id = \Yii::$app->request->post('mall_id');//P_ADD
-            return $form->save();
+            $form = new PtGoodsForm();
+            $good_same = Goods::find()->where('id',\Yii::$app->request->post('mall_id'))->one();
+
+            $form->store_id = $this->store->id;
+            $form->limit_time = $model['limit_time'] ? strtotime($model['limit_time']) : 0;
+            $form->name = $good_same->name;
+            $form->price = $good_same->price;
+            $form->original_price = $good_same->original_price;
+            $form->detail = $good_same->detail;
+            $form->name = $model['cat_id'];
+            $form->status = 2;
+            $form->price = $good_same->price;
+            $form->grouptime = $model['grouptime'];//缺attr
+            $form->service = $model['service'];
+            $form->sort = $model['sort'];
+            $form->service = $model['service'];
+            $form->service = $model['service'];
+
+
+
+
+            return $form->goodSave();
         }
 
         $ptCat = PtCat::find()

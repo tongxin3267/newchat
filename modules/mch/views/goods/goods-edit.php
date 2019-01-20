@@ -208,8 +208,8 @@ $model = Yii::$app->admin->identity;
     }
     .can-img{
         display: block;
-        width: 74.5%;
-        height: 87.5%;
+        width: 442px;
+        height: 99%;
         background-color:rgba(255,255,255,0);
         position: absolute;
         z-index:998;
@@ -1022,14 +1022,14 @@ $model = Yii::$app->admin->identity;
                                     <span class="step-location" id="step4"></span>
                                 </div>
                                 <div>
-                                    <?php if ($model->username != 'admin'):?>
-                                        <span class="can-img"></span>
-                                    <?php endif;?>
                                     <div class="form-group row">
                                         <div class="col-3 text-right">
                                             <label class=" col-form-label required">图文详情</label>
                                         </div>
                                         <div class="col-9">
+                                            <?php if ($model->username != 'admin'):?>
+                                                <span class="can-img"></span>
+                                            <?php endif;?>
                                             <textarea class="short-row" id="editor" name="model[detail]" readonly="readonly"><?= $goods['detail'] ?></textarea>
                                         </div>
                                     </div>
