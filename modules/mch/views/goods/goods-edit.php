@@ -251,7 +251,9 @@ $model = Yii::$app->admin->identity;
                                     <a flex="cross:center" class="head-step" href="#step4">商品详情</a>
                                 </div>
                             </div>
-                            <div class="cover"></div>
+                            <?php if ($model->username != 'admin'):?>
+                                <div class="cover"></div>
+                            <?php endif;?>
                             <div class="step-block" flex="dir:left box:first">
                                 <div>
                                     <span>选择分类</span>
@@ -1020,7 +1022,9 @@ $model = Yii::$app->admin->identity;
                                     <span class="step-location" id="step4"></span>
                                 </div>
                                 <div>
-                                    <span class="can-img"></span>
+                                    <?php if ($model->username != 'admin'):?>
+                                        <span class="can-img"></span>
+                                    <?php endif;?>
                                     <div class="form-group row">
                                         <div class="col-3 text-right">
                                             <label class=" col-form-label required">图文详情</label>
