@@ -66,6 +66,7 @@ class OrderSubmitForm extends OrderForm
 
         foreach ($mchListData as &$mch) {
 
+
             $checkMchData = $this->checkMchData($mch);
             if ($this->use_integral == 2) {
                 $mch['integral'] = ['forehead' => 0, 'forehead_integral' => 0];
@@ -76,12 +77,18 @@ class OrderSubmitForm extends OrderForm
             }
 
             $payPrice = $this->getPayPrice($mch);
+            $cost = 0;
+            foreach ($mch['goods_list'] as $goods) {
+                $single_good = Goods::find()->where(['id'=>$goods['goods_id']])->one();
+                $cost += $single_good->cost_price;
+            }
 
             $order = new Order();
             $order->store_id = $this->store_id;
             $order->user_id = $this->user_id;
             $order->order_no = $this->getOrderNo();
             $order->pay_price = $payPrice;
+            $order->royalty = $payPrice - $cost;
             if (isset($mch['picker_coupon']) && !empty($mch['picker_coupon'])) {
                 $order->user_coupon_id = $mch['picker_coupon']['user_coupon_id'];
                 $order->coupon_sub_price = $mch['picker_coupon']['sub_price'];
