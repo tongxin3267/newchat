@@ -299,45 +299,60 @@ class GoodsController extends Controller
 
         if (\Yii::$app->request->isPost) {
             $model = \Yii::$app->request->post('model');
-            var_dump($model);exit;
-//            $model['store_id'] = $this->store->id;
-//            $model['limit_time'] = $model['limit_time'] ? strtotime($model['limit_time']) : 0;
-//            $form = new PtGoodsForm();
-//            $form->attributes = $model;
-//            $form->attr = \Yii::$app->request->post('attr');
-//            $form->goods = $goods;
 
-            // 单规格会员价数据
-//            $attr_member_price_List = [];
-//            foreach ($levelList as $level) {
-//                $keyName = 'member' . $level['level'];
-//                $attr_member_price_List[$keyName] = \Yii::$app->request->post($keyName);
-//            }
-//            $form->attr_member_price_List = $attr_member_price_List;
-//
-//            $form->goods_share = $goods_share;
-//            $form->mall_id = \Yii::$app->request->post('mall_id');//P_ADD
-
+            $model['store_id'] = $this->store->id;
+            $model['limit_time'] = $model['limit_time'] ? strtotime($model['limit_time']) : 0;
             $form = new PtGoodsForm();
-            $good_same = Goods::find()->where('id',\Yii::$app->request->post('mall_id'))->one();
+            $form->attributes = $model;
+            $form->attr = \Yii::$app->request->post('attr');
+            $form->goods = $goods;
 
-            $form->store_id = $this->store->id;
-            $form->limit_time = $model['limit_time'] ? strtotime($model['limit_time']) : 0;
-            $form->name = $good_same->name;
-            $form->price = $good_same->price;
-            $form->original_price = $good_same->original_price;
-            $form->detail = $good_same->detail;
-            $form->name = $model['cat_id'];
-            $form->status = 2;
-            $form->price = $good_same->price;
-            $form->grouptime = $model['grouptime'];//缺attr
-            $form->service = $model['service'];
-            $form->sort = $model['sort'];
-            $form->service = $model['service'];
-            $form->service = $model['service'];
+             //单规格会员价数据
+            $attr_member_price_List = [];
+            foreach ($levelList as $level) {
+                $keyName = 'member' . $level['level'];
+                $attr_member_price_List[$keyName] = \Yii::$app->request->post($keyName);
+            }
+            $form->attr_member_price_List = $attr_member_price_List;
 
+            $form->goods_share = $goods_share;
 
+            $form->mall_id = \Yii::$app->request->post('mall_id');//P_ADD
 
+//            $form = new PtGoodsForm();
+//            $good_same = Goods::find()->where('id',\Yii::$app->request->post('mall_id'))->one();
+//var_dump($good_same);exit;
+//            $form->store_id = $this->store->id;
+//            $form->limit_time = $model['limit_time'] ? strtotime($model['limit_time']) : 0;
+//            $form->name = $good_same->name;
+//            $form->price = $good_same->price;
+//            $form->original_price = $good_same->original_price;
+//            $form->detail = $good_same->detail;
+//            $form->name = $model['cat_id'];
+//            $form->status = 2;
+//            $form->price = $good_same->price;
+//            $form->grouptime = $model['grouptime'];//缺attr
+//            $form->service = $model['service'];
+//            $form->sort = $model['sort'];
+//            $form->virtual_sales = $good_same->virtual_sales;
+//            $form->cover_pic = $good_same->cover_pic;
+//            $form->weight = $good_same->weight;
+//            $form->freight = $good_same->freight;
+//            $form->unit = $good_same->unit;
+//            $form->addtime = time();
+//            $form->is_delete = 0;
+//            $form->is_hot = 0;
+//            $form->status = 2;
+//
+//            $form->is_only = $model['is_only'];
+//            $form->colonel = $model['colonel'];
+//            $form->buy_limit = $model['buy_limit'];
+//            $form->type = $model['type'];
+//            $form->use_attr = $model['use_attr']?1:0;
+//            $form->one_buy_limit = $model['one_buy_limit'];
+//            $form->payment = \Yii::$app->serializer->encode($model['payment']);
+//            $form->good_same_id = $good_same->good_same_id?$good_same->good_same_id:\Yii::$app->request->post('mall_id');
+//            var_dump($form);exit;
 
             return $form->goodSave();
         }

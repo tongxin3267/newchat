@@ -10,6 +10,7 @@ namespace app\modules\mch\models\group;
 
 use app\models\Attr;
 use app\models\AttrGroup;
+use app\models\Goods;
 use app\models\PtGoods;
 use app\models\PtGoodsPic;
 use app\modules\mch\models\LevelListForm;
@@ -311,7 +312,8 @@ class PtGoodsForm extends MchModel
     /**
      * 商品编辑简易版
      */
-    public function goodSave(){
+    public function goodSave()
+    {
         if ($this->validate()) {
             if (!is_array($this->goods_pic_list) || empty($this->goods_pic_list) || count($this->goods_pic_list) == 0) {
                 return [
@@ -348,6 +350,55 @@ class PtGoodsForm extends MchModel
             if (!$this->virtual_sales) {
                 $this->virtual_sales = 0;
             }
+
+            $goods = $this->goods;
+            if ($goods->isNewRecord) {
+                $goods->is_delete = 0;
+                $goods->is_hot = 0;
+                $goods->addtime = time();
+                $goods->status = 2;
+                $goods->attr = \Yii::$app->serializer->encode([]);
+            }
+
+            $_this_attributes = $this->attributes;
+            $_this_attributes['payment'] = \Yii::$app->serializer->encode($this->payment);
+            unset($_this_attributes['attr']);
+            $goods->attributes = $_this_attributes;
+
+            //去除部分emoji
+            function userTextEncode($str){
+                if(!is_string($str)) return $str;
+                if(!$str || $str=='undefined')return '';
+                $text = json_encode($str); //暴露出unicode
+                $text = preg_replace_callback("/(\\\u[ed][0-9a-f]{3})/i",function($str){
+                    return addslashes($str[0]);
+                },$text); //将emoji的unicode留下，其他不动，这里的正则比原答案增加了d，因为我发现我很多emoji实际上是\ud开头的，反而暂时没发现有\ue开头。
+                return json_decode($text);
+            };
+            $goods->detail = preg_replace('/\\\u[a-z0-9]{4}/', '', userTextEncode($_this_attributes['detail']));
+
+            $goods->use_attr = $this->use_attr ? 1 : 0;
+
+
+            $good_same = Goods::find()->where('id',\Yii::$app->request->post('mall_id'))->one();
+            $goods->store_id = $this->store_id;
+            $goods->name = $good_same->name;
+            $goods->price = $good_same->price;
+            $goods->original_price = $good_same->original_price;
+            $goods->detail = $good_same->detail;
+            $goods->status = 2;
+            $goods->price = $good_same->price;
+            $goods->virtual_sales = $good_same->virtual_sales;
+            $goods->cover_pic = $good_same->cover_pic;
+            $goods->weight = $good_same->weight;
+            $goods->freight = $good_same->freight;
+            $goods->unit = $good_same->unit;
+            $goods->addtime = time();
+            $goods->is_delete = 0;
+            $goods->is_hot = 0;
+            $goods->status = 2;
+            $goods->good_same_id = $good_same->good_same_id?$good_same->good_same_id:$this->mall_id;
+
 
             if ($goods->save()) {
                 PtGoodsPic::updateAll(['is_delete' => 1], ['goods_id' => $goods->id]);

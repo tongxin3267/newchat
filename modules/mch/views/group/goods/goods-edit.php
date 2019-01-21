@@ -501,7 +501,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">单买价（原价）</label>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 over">
                                     <input type="number" step="0.01" class="form-control short-row"
                                            name="model[original_price]" min="0"
                                            value="<?= $goods['original_price'] ? $goods['original_price'] : 1 ?>">
@@ -807,7 +807,7 @@ if (!$returnUrl) {
                                                         </div>
                                                     </th>
                                                     <th>
-                                                        <div class="input-group">
+                                                        <div class="input-group over">
                                                             <span>团价</span>
                                                             <input class="form-control form-control-sm" type="number"
                                                                    style="width: 60px">
@@ -817,7 +817,7 @@ if (!$returnUrl) {
                                                         </div>
                                                     </th>
                                                     <th>
-                                                        <div class="input-group">
+                                                        <div class="input-group over">
                                                             <span>单价</span>
                                                             <input class="form-control form-control-sm" type="number"
                                                                    style="width: 60px">
