@@ -10,6 +10,7 @@
 namespace app\modules\admin\controllers;
 
 use app\models\Option;
+use app\models\Goods;
 use app\modules\admin\models\LoginForm;
 use app\modules\admin\models\password\RegisterForm;
 use app\modules\admin\models\password\ResetPasswordForm;
@@ -46,8 +47,7 @@ class PassportController extends Controller
     //登录
     public function actionLogin()
     {
-      
-      
+
         if (\Yii::$app->request->isAjax) {
             $form = new LoginForm();
             $form->attributes = \Yii::$app->request->post();

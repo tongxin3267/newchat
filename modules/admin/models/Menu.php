@@ -73,13 +73,18 @@ class Menu
                             ],
                         ]
                     ],
-                                      [
+                    [
                         'name' => '子账户的商城',
                         'route' => 'admin/app/other-app',
                         'icon' => 'icon-shanghu',
                         'is_admin' => true,
                     ],
-                  
+                    [
+                        'name' => '商品提成',
+                        'route' => 'admin/app/royaltygood',
+                        'icon' => 'icon-shanghu',
+                        'is_admin' => true,
+                    ],
                    
                 ]
             ],

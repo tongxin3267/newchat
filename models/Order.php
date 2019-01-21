@@ -69,6 +69,7 @@ use yii\db\ActiveQuery;
  * @property integer $type
  * @property string $share_price
  * @property integer $is_show
+ * @property integer $royalty
  */
 class Order extends \yii\db\ActiveRecord
 {
@@ -250,6 +251,7 @@ class Order extends \yii\db\ActiveRecord
             'type' => '0普通订单1大转盘订单',
             'share_price' => '发放佣金的金额',
             'is_show' => '是否显示 0--不显示 1--显示（软删除用）',
+            'royalty' => '商品提成',
         ];
     }
 
