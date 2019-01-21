@@ -46,6 +46,9 @@ use app\models\Distribution;
 use app\models\Release;
 use app\models\Sure;
 use app\models\Audit;
+use app\models\Order;
+use app\models\PtOrder;
+use app\models\MsOrder;
 
 class AppController extends Controller
 {
@@ -1751,6 +1754,73 @@ class AppController extends Controller
             return false;
         }
         return true;
+    }
+
+    //商品提成
+
+    public function actionRoyaltygood(){
+        $search = \Yii::$app->request->get('search');
+        $order_classification = \Yii::$app->request->get('order_classification');
+        $query_start_date =  strtotime(\Yii::$app->request->get('query_start_date'));
+        $query_end_date = strtotime(\Yii::$app->request->get('query_end_date'));
+        if(!$search){
+            $search = '';
+        }
+        if(!$query_start_date){
+            $query_start_date = 0;
+        }
+        if(!$query_end_date){
+            $query_end_date = time();
+        }
+        if(!$order_classification){
+            $order_classification = 1;
+        }
+
+
+       if($order_classification == 1){
+            if(\Yii::$app->admin->id == 1){
+                $where = "(addtime >".$query_start_date." AND addtime <".$query_end_date.") AND (is_confirm =1 AND is_show =1 AND is_sale = 1)";
+                $query = Order::find()->where($where);
+
+            }else{
+                $store = Store::find()->where(['user_id'=>\Yii::$app->admin->id,'is_delete'=>1])->one();
+                $where = "(addtime >".$query_start_date." AND addtime <".$query_end_date.") AND (is_confirm =1 AND is_show =1 AND is_sale = 1 AND store_id =".$store->id.")";
+                $query = Order::find()->where($where);
+            }
+
+       }elseif ($order_classification == 2){
+           if(\Yii::$app->admin->id == 1){
+               $where = "(addtime >".$query_start_date." AND addtime <".$query_end_date.") AND (is_confirm =1 AND is_show =1 AND is_sale = 1)";
+               $query = MsOrder::find()->where($where);
+
+           }else{
+               $store = Store::find()->where(['user_id'=>\Yii::$app->admin->id,'is_delete'=>1])->one();
+               $where = "(addtime >".$query_start_date." AND addtime <".$query_end_date.") AND (is_confirm =1 AND is_show =1 AND is_sale = 1 AND store_id =".$store->id.")";
+               $query = MsOrder::find()->where($where);
+           }
+       }
+       elseif ($order_classification == 3){
+           if(\Yii::$app->admin->id == 1){
+               $where = "(addtime >".$query_start_date." AND addtime <".$query_end_date.") AND (is_confirm =1 AND is_show =1)";
+               $query = PtOrder::find()->where($where);
+
+           }else{
+               $store = Store::find()->where(['user_id'=>\Yii::$app->admin->id,'is_delete'=>1])->one();
+               $where = "(addtime >".$query_start_date." AND addtime <".$query_end_date.") AND (is_confirm =1 AND is_show =1 AND store_id =".$store->id.")";
+               $query = PtOrder::find()->where($where);
+           }
+       }
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount'=>$countQuery->count(),'defaultPageSize'=>2,'validatePage' => false,]);//设置数据总量与每页数据大小（几条)
+        $orders = $query->offset($pages->offset)//偏移量
+        ->limit($pages->limit)//此处获取的就是pageSize的值
+        ->orderBy('addtime DESC')
+        ->all();
+
+
+        return $this->render('royaltygood',['orders'=>$orders,'pages'=>$pages,'search'=>$search,'order_classification'=>$order_classification,'query_end_date'=>$query_end_date,'query_start_date'=>$query_start_date]);
+
     }
   	  
 }
