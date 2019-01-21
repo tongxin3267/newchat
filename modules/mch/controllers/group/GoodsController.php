@@ -19,6 +19,7 @@ use app\models\PostageRules;
 use app\models\PtCat;
 use app\models\PtGoods;
 use app\models\PtGoodsDetail;
+use app\models\PtGoodsPic;
 use app\modules\mch\models\group\PtCatForm;
 use app\modules\mch\models\group\PtGoodsDetailForm;
 use app\modules\mch\models\group\PtGoodsForm;
@@ -45,12 +46,74 @@ class GoodsController extends Controller
             $arr[0][$k]['ladder_num'] = $ladder_num;
         };
 
-        $cat_list = PtCat::find()->select('id,name')->andWhere(['store_id' => $this->store->id, 'is_delete' => 0])->orderBy('sort ASC')->asArray()->all();
+        if ($_POST){
+            //非admin选择拼团活动
+            $gid = $_GET['Gid'];
+            $good = PtGoods::find()->where(['id'=>$gid])->one();
+            $newGood = new PtGoods();
+            $newGood->store_id = $this->store->id;
+            $newGood->name = $good->name;
+            $newGood->original_price = $good->original_price;
+            $newGood->price = $good->price;
+            $newGood->detail = $good->detail;
+            $newGood->cat_id = $good->cat_id;
+            $newGood->status = 2;
+            $newGood->grouptime = $good->grouptime;
+            $newGood->attr = $good->attr;
+            $newGood->service = $good->service;
+            $newGood->sort = $good->sort;
+            $newGood->virtual_sales = $good->virtual_sales;
+            $newGood->cover_pic = $good->cover_pic;
+            $newGood->weight = $good->weight;
+            $newGood->freight = $good->freight;
+            $newGood->unit = $good->unit;
+            $newGood->addtime = time();
+            $newGood->is_delete = $good->is_delete;
+            $newGood->group_num = $good->group_num;
+            $newGood->is_hot = $good->is_hot;
+            $newGood->limit_time = $good->limit_time;
+            $newGood->is_only = $good->is_only;
+            $newGood->is_more = $good->is_more;
+            $newGood->colonel = $good->colonel;
+            $newGood->buy_limit = $good->buy_limit;
+            $newGood->type = $good->type;
+            $newGood->use_attr = $good->use_attr;
+            $newGood->one_buy_limit = $good->one_buy_limit;
+            $newGood->payment = $good->payment;
+            $newGood->good_same_id = $good->good_same_id;
+            if ($newGood->save()){
+                $ptPicItem = PtGoodsPic::find()->where(['goods_id'=>$gid,'is_delete'=>0])->all();
+                foreach ($ptPicItem as $v){
+                    $ptPic = new PtGoodsPic();
+                    $ptPic->goods_id = $newGood->id;
+                    $ptPic->pic_url = $v->pic_url;
+                    $ptPic->is_delete = 0;
+                    $ptPic->save();
+                }
+            }else{
+                return false;
+            }
+        }
+
+        $type = $_GET['type'];
+        if ($type == 2 && \Yii::$app->admin->identity->id != 1){
+            $cat_list = PtCat::find()->select('id,name')->andWhere(['store_id' => 1, 'is_delete' => 0])->orderBy('sort ASC')->asArray()->all();
+            return $this->render('goods-select', [
+                'list' => $arr[0],
+                'pagination' => $arr[1],
+                'cat_list' => $cat_list,
+            ]);
+        }
+        $cat_list = PtCat::find()->select('id,name')->andWhere(['store_id' => 1, 'is_delete' => 0])->orderBy('sort ASC')->asArray()->all();
         return $this->render('index', [
             'list' => $arr[0],
             'pagination' => $arr[1],
             'cat_list' => $cat_list,
         ]);
+    }
+
+    public  function actionAdd(){
+
     }
 
     /**
@@ -60,7 +123,8 @@ class GoodsController extends Controller
     public function actionCat()
     {
         $form = new PtCatForm();
-        $arr = $form->getList($this->store->id);
+//        $arr = $form->getList($this->store->id);
+        $arr = $form->getList(1);
 
         return $this->render('cat', [
             'list' => $arr[0],
@@ -75,6 +139,9 @@ class GoodsController extends Controller
      */
     public function actionCatEdit($id = 0)
     {
+        if (\Yii::$app->admin->identity->id != 1){
+            return false;
+        }
         $cat = PtCat::findOne(['id' => $id, 'is_delete' => 0, 'store_id' => $this->store->id]);
         if (!$cat) {
             $cat = new PtCat();
@@ -318,47 +385,44 @@ class GoodsController extends Controller
             $form->goods_share = $goods_share;
 
             $form->mall_id = \Yii::$app->request->post('mall_id');//P_ADD
+            if ($this->store->id == 1){
 
-//            $form = new PtGoodsForm();
-//            $good_same = Goods::find()->where('id',\Yii::$app->request->post('mall_id'))->one();
-//var_dump($good_same);exit;
-//            $form->store_id = $this->store->id;
-//            $form->limit_time = $model['limit_time'] ? strtotime($model['limit_time']) : 0;
-//            $form->name = $good_same->name;
-//            $form->price = $good_same->price;
-//            $form->original_price = $good_same->original_price;
-//            $form->detail = $good_same->detail;
-//            $form->name = $model['cat_id'];
-//            $form->status = 2;
-//            $form->price = $good_same->price;
-//            $form->grouptime = $model['grouptime'];//缺attr
-//            $form->service = $model['service'];
-//            $form->sort = $model['sort'];
-//            $form->virtual_sales = $good_same->virtual_sales;
-//            $form->cover_pic = $good_same->cover_pic;
-//            $form->weight = $good_same->weight;
-//            $form->freight = $good_same->freight;
-//            $form->unit = $good_same->unit;
-//            $form->addtime = time();
-//            $form->is_delete = 0;
-//            $form->is_hot = 0;
-//            $form->status = 2;
-//
-//            $form->is_only = $model['is_only'];
-//            $form->colonel = $model['colonel'];
-//            $form->buy_limit = $model['buy_limit'];
-//            $form->type = $model['type'];
-//            $form->use_attr = $model['use_attr']?1:0;
-//            $form->one_buy_limit = $model['one_buy_limit'];
-//            $form->payment = \Yii::$app->serializer->encode($model['payment']);
-//            $form->good_same_id = $good_same->good_same_id?$good_same->good_same_id:\Yii::$app->request->post('mall_id');
-//            var_dump($form);exit;
+            }else{
+                $data = [
+//                    'original_price' => $form->goods->original_price,
+//                    'price' => $form->goods->price,
+//                    'use_attr' => $form->goods->use_attr?$form->goods->use_attr:0,
+//                    'attr' => $form->goods->attr,
+//                    'colonel' => $form->goods->colonel,
+//                    'is_only' => $form->goods->is_only,
+//                    'is_more' => $form->goods->is_more,
+//                    'buy_limit' => $form->goods->buy_limit,
+//                    'group_num' => $form->goods->group_num,
+//                    'service' => $form->goods->service,
+//                    'grouptime' => $form->goods->grouptime,
+                    'limit_time' => $model['limit_time'] ? strtotime($model['limit_time']) : 0,
+//                    'one_buy_limit' => $form->goods->one_buy_limit
+                ];
+//                var_dump($data);exit;
 
+                if (PtGoods::updateAll($data,['id'=>$form->goods->id])){
+                    return [
+                        'code' => 0,
+                        'msg' => '保存成功',
+                    ];
+                }else{
+                    return [
+                        'code' => 1,
+                        'msg' => '保存失败',
+                    ];
+                }
+
+            }
             return $form->goodSave();
         }
 
         $ptCat = PtCat::find()
-            ->andWhere(['is_delete' => 0, 'store_id' => $this->store->id])
+            ->andWhere(['is_delete' => 0, 'store_id' => 1])
             ->asArray()
             ->orderBy('sort ASC')
             ->all();
@@ -382,6 +446,7 @@ class GoodsController extends Controller
             'goods_share' => $goods_share,
         ]);
     }
+
 
     /**
      * @param int $id

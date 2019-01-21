@@ -16,6 +16,7 @@ $returnUrl = Yii::$app->request->referrer;
 if (!$returnUrl) {
     $returnUrl = $urlManager->createUrl(['mch/group/goods/index']);
 }
+$model = Yii::$app->admin->identity;
 ?>
 <script src="<?= $staticBaseUrl ?>/mch/js/uploadVideo.js"></script>
 <style>
@@ -283,11 +284,10 @@ if (!$returnUrl) {
                                 </div>
                                 <div class="col-9">
                                     <div class="input-group short-row">
-                                        <select class="form-control parent" name="model[cat_id]">
+                                        <select class="form-control parent" name="model[cat_id]" <?php if ($model->username != 'admin' || $goods['id']):?>readonly="readonly" <?php endif;?>>
                                             <option value="">请选择分类</option>
                                             <?php foreach ($cat as $value) : ?>
-                                                <option
-                                                        value="<?= $value['id'] ?>" <?= $value['id'] == $goods['cat_id'] ? 'selected' : '' ?>><?= $value['name'] ?></option>
+                                                <option value="<?= $value['id'] ?>" <?= $value['id'] == $goods['cat_id'] ? 'selected' : '' ?>><?= $value['name'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -312,7 +312,7 @@ if (!$returnUrl) {
 <!--                                    <div class="copy-error text-danger fs-sm" hidden></div>-->
 <!--                                </div>-->
 <!--                            </div>-->
-                        
+                            <?php if ($model->username == 'admin' && !$goods['id']):?>
                             <div class="form-group row">
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label">商城商品拉取</label>
@@ -329,6 +329,7 @@ if (!$returnUrl) {
                                     <div class="copy-error text-danger fs-sm" hidden></div>
                                 </div>
                             </div>
+                            <?php endif;?>
                         </div>
                     </div>
 
@@ -645,7 +646,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label">运费设置</label>
                                 </div>
-                                <div class="col-9 over">
+                                <div class="col-9">
                                     <select class="form-control short-row" name="model[freight]">
                                         <option value="0">默认模板</option>
                                         <?php foreach ($postageRiles as $p) : ?>
@@ -659,7 +660,7 @@ if (!$returnUrl) {
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label">送货方式</label>
                                 </div>
-                                <div class="col-9 col-form-label over">
+                                <div class="col-9 col-form-label">
                                     <label class="custom-control custom-radio">
                                         <input <?= $goods['type'] == 1 ? 'checked' : 'checked' ?> value="1"
                                                                                                   name="model[type]"
@@ -698,7 +699,9 @@ if (!$returnUrl) {
 
                         <div>
                             <!-- 无规格 -->
+                            <?php if ($model->username != 'admin'):?>
                             <span class="cover2"></span>
+                            <?php endif;?>
                             <div class="form-group row">
                                 <div class="col-3 text-right">
                                     <label class=" col-form-label required">商品库存</label>
@@ -864,14 +867,14 @@ if (!$returnUrl) {
                                                     <td>
                                                         <input class="form-control form-control-sm" type="number"
                                                                min="0"
-                                                               step="0.01" style="width: 70px"
+                                                               step="0.01" style="width: 70px;position: absolute;z-index: 999;"
                                                                v-bind:name="'attr['+index+'][price]'"
                                                                v-model="item.price" v-on:change="change(item,index)">
                                                     </td>
                                                     <td>
                                                         <input class="form-control form-control-sm" type="number"
                                                                min="0"
-                                                               step="0.01" style="width: 70px"
+                                                               step="0.01" style="width: 70px;position: absolute;z-index: 999;"
                                                                v-bind:name="'attr['+index+'][single]'"
                                                                v-model="item.single" v-on:change="change(item,index)">
                                                     </td>
@@ -927,51 +930,6 @@ if (!$returnUrl) {
 
                     </div>
 
-                    <div class="step-block" flex="dir:left box:first">
-                        <div>
-                            <span>营销管理</span>
-                            <span class="step-location" id="step4"></span>
-                        </div>
-                        <div>
-
-                            <div class="form-group row">
-                                <div class="form-group-label col-3 text-right">
-                                    <label class="col-form-label">支付方式</label>
-                                </div>
-                                <?php $payment = json_decode($goods['payment'], true); ?>
-                                <div class="col-9">
-                                    <label class="checkbox-label">
-                                        <input <?= $payment['wechat'] == 1 ? 'checked' : null ?>
-                                                value="1"
-                                                name="model[payment][wechat]" type="checkbox"
-                                                class="custom-control-input">
-                                        <span class="label-icon"></span>
-                                        <span class="label-text">线上支付</span>
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input <?= $payment['huodao'] == 1 ? 'checked' : null ?>
-                                                value="1"
-                                                name="model[payment][huodao]" type="checkbox"
-                                                class="custom-control-input">
-                                        <span class="label-icon"></span>
-                                        <span class="label-text">货到付款</span>
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input <?= $payment['balance'] == 1 ? 'checked' : null ?>
-                                                value="1"
-                                                name="model[payment][balance]" type="checkbox"
-                                                class="custom-control-input">
-                                        <span class="label-icon"></span>
-                                        <span class="label-text">余额支付</span>
-                                    </label>
-                                    <div class="fs-sm text-danger">若都不勾选，则视为与商城支付方式一致</div>
-                                    <div class="fs-sm">可在“<a target="_blank"
-                                                             href="<?= $urlManager->createUrl(['mch/recharge/setting']) ?>">营销管理=>充值=>设置</a>”中开启余额功能
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="step-block" flex="dir:left box:first">
                         <div>

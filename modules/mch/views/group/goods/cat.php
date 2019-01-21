@@ -14,6 +14,7 @@ $urlManager = Yii::$app->urlManager;
 $this->title = '拼团分类';
 $this->params['active_nav_group'] = 10;
 $this->params['is_group'] = 1;
+$model = Yii::$app->admin->identity;
 ?>
 <style>
     table {
@@ -60,8 +61,10 @@ $this->params['is_group'] = 1;
         ?>
         <div class="mb-3 clearfix">
             <div class="float-left">
+                <?php if ($model->username == 'admin'):?>
                 <a href="<?= $urlManager->createUrl(['mch/group/goods/cat-edit']) ?>" class="btn btn-primary"><i
                         class="iconfont icon-playlistadd"></i>添加分类</a>
+                <?php endif;?>
             </div>
         </div>
         <table class="table table-bordered bg-white">
@@ -71,14 +74,18 @@ $this->params['is_group'] = 1;
                 <th>分类名称</th>
                 <th>图标</th>
                 <th>排序</th>
+                <?php if ($model->username == 'admin'):?>
                 <th>操作</th>
+                <?php endif;?>
             </tr>
             </thead>
             <col style="width: 5%">
             <col style="width: 10%">
             <col style="width: 22%">
             <col style="width: 5%">
+            <?php if ($model->username == 'admin'):?>
             <col style="width: 18%">
+            <?php endif;?>
             <tbody>
             <?php foreach ($list as $index => $cat) : ?>
                 <tr>
@@ -88,12 +95,14 @@ $this->params['is_group'] = 1;
                         <div class="goods-pic" style="background-image: url(<?= $cat->pic_url ?>)"></div>
                     </td>
                     <td class="nowrap text-danger"><?= $cat->sort ?></td>
+                    <?php if ($model->username == 'admin'):?>
                     <td class="nowrap">
                         <a class="btn btn-sm btn-primary"
                            href="<?= $urlManager->createUrl(['mch/group/goods/cat-edit', 'id' => $cat->id]) ?>">修改</a>
                         <a class="btn btn-sm btn-danger del"
                            href="<?= $urlManager->createUrl(['mch/group/goods/cat-del', 'id' => $cat->id]) ?>">删除</a>
                     </td>
+                    <?php endif;?>
                 </tr>
             <?php endforeach; ?>
             </tbody>

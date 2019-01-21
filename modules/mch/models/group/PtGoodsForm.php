@@ -151,6 +151,9 @@ class PtGoodsForm extends MchModel
      */
     public function getList($store_id)
     {
+        if ($_GET['type'] == 2){
+            $store_id = 1;
+        }
         $query = PtGoods::find()
             ->alias('g')
             ->andWhere(['g.is_delete' => 0, 'g.store_id' => $store_id])

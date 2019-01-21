@@ -62,35 +62,6 @@ $model = Yii::$app->admin->identity;
         ?>
         <div class="mb-3 clearfix">
             <div class="float-left">
-                <?php if ($model->username == 'admin'):?>
-                <a href="<?= $urlManager->createUrl(['mch/group/goods/goods-edit']) ?>" class="btn btn-primary"><i class="iconfont icon-playlistadd"></i>添加商品</a>
-                <?php else:?>
-                <a href="<?= $urlManager->createUrl(['mch/group/goods/index','type'=>2]) ?>" class="btn btn-primary"><i class="iconfont icon-playlistadd"></i>选择商品</a>
-                <?php endif;?>
-                <div class="dropdown float-right ml-2">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        批量设置
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                         style="max-height: 200px;overflow-y: auto">
-                        <a href="javascript:void(0)" class="btn btn-secondary batch dropdown-item"
-                           data-url="<?= $urlManager->createUrl(['mch/group/goods/batch']) ?>" data-content="是否批量上架"
-                           data-type="0">批量上架</a>
-                        <a href="javascript:void(0)" class="btn btn-warning batch dropdown-item"
-                           data-url="<?= $urlManager->createUrl(['mch/group/goods/batch']) ?>" data-content="是否批量下架"
-                           data-type="1">批量下架</a>
-                        <a href="javascript:void(0)" class="btn btn-danger batch dropdown-item"
-                           data-url="<?= $urlManager->createUrl(['mch/group/goods/batch']) ?>" data-content="是否批量删除"
-                           data-type="2">批量删除</a>
-                        <a href="javascript:void(0)" class="btn btn-danger batch dropdown-item"
-                           data-url="<?= $urlManager->createUrl(['mch/group/goods/batch']) ?>" data-content="是否批量设置热销"
-                           data-type="3">批量设置热销</a>
-                        <a href="javascript:void(0)" class="btn btn-danger batch dropdown-item"
-                           data-url="<?= $urlManager->createUrl(['mch/group/goods/batch']) ?>" data-content="是否批量取消热销"
-                           data-type="4">批量取消热销</a>
-                    </div>
-                </div>
                 <div class="dropdown float-right ml-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -138,12 +109,6 @@ $model = Yii::$app->admin->identity;
         <table class="table table-bordered bg-white table-hover">
             <thead>
             <tr>
-                <th style="text-align: center;text-overflow:clip;">
-                    <label class="checkbox-label" style="margin-right: 0px;">
-                        <input type="checkbox" class="goods-all">
-                        <span class="label-icon"></span>
-                    </label>
-                </th>
                 <th>
                     <span class="label-text">商品ID</span>
                 </th>
@@ -151,37 +116,24 @@ $model = Yii::$app->admin->identity;
                 <th>商品名称</th>
                 <th>商品图片</th>
                 <th>团购价</th>
-                <th>状态</th>
-                <th>热销</th>
                 <th>拼团人数</th>
                 <th>已出售量</th>
                 <th>排序</th>
                 <th>操作</th>
             </tr>
             </thead>
-            <col style="width: 3.5%">
-            <col style="width: 7%">
-            <col style="width: 8%">
-            <col style="width: 20%">
-            <col style="width: 7%">
-            <col style="width: 8%">
-            <col style="width: 9%">
-            <col style="width: 9%">
-            <col style="width: 8%">
-            <col style="width: 8%">
-            <col style="width: 8%">
-            <col style="width: 18%">
+            <col style="width: 10%">
+            <col style="width: 10%">
+            <col style="width: 25%">
+            <col style="width: 10%">
+            <col style="width: 10%">
+            <col style="width: 10%">
+            <col style="width: 10%">
+            <col style="width: 10%">
+            <col style="width: 10%">
             <tbody>
             <?php foreach ($list as $index => $goods) : ?>
                 <tr>
-                    <td class="nowrap" style="text-align: center">
-                    <label class="checkbox-label" style="margin-right: 0px;">
-                        <input data-num="<?= $goods['num'] ?>" type="checkbox"
-                               class="goods-one"
-                               value="<?= $goods['id'] ?>">
-                        <span class="label-icon"></span>
-                    </label>
-                    </td>
                     <td data-toggle="tooltip"
                         data-placement="top" title="<?= $goods['id'] ?>">
                         <span class="label-text"><?= $goods['id'] ?></span></td>
@@ -199,31 +151,6 @@ $model = Yii::$app->admin->identity;
                     </td>
                     <td class="nowrap text-danger"><?= $goods['price'] ?>元</td>
                     <td class="nowrap">
-                        <?php if ($goods['status'] == 1) : ?>
-                            <!--                        <span class="badge badge-info">上架</span>-->
-                            <!--                        |-->
-                            <span class="badge badge-success">已上架</span>
-                            |
-                            <a href="javascript:" onclick="upDown(<?= $goods['id'] ?>,'down');">下架</a>
-                        <?php else : ?>
-                            <span class="badge badge-default">已下架</span>
-                            |
-                            <a href="javascript:" onclick="upDown(<?= $goods['id'] ?>,'up');">上架</a>                           
-                        <?php endif ?>
-                    </td>
-                    <td class="nowrap">
-                        <?php if ($goods['is_hot'] == 1) : ?>
-                            <span class="badge badge-danger">热销</span>
-                            |
-                            <a onclick="setHot(<?= $goods['id'] ?>,'nohot');"
-                               href="javascript:;">普通</a>
-                        <?php else : ?>
-                            <span class="badge badge-primary">普通</span>
-                            |
-                            <a onclick="setHot(<?= $goods['id'] ?>,'hot');" href="javascript:;">热销</a>
-                        <?php endif ?>
-                    </td>
-                    <td class="nowrap">
                         <?= $goods['ladder_num'] ?>
                     </td>
                     <td class="nowrap">
@@ -233,12 +160,10 @@ $model = Yii::$app->admin->identity;
                         <?= $goods['sort'] ?>
                     </td>
                     <td class="nowrap">
-                        <a class="btn btn-sm btn-primary"
-                           href="<?= $urlManager->createUrl(['mch/group/goods/goods-edit', 'id' => $goods['id']]) ?>">修改</a>
-                        <a class="btn btn-sm btn-danger del"
-                           href="<?= $urlManager->createUrl(['mch/group/goods/goods-del', 'id' => $goods['id']]) ?>">删除</a>
-                        <a class="btn btn-sm btn-info"
-                           href="<?= $urlManager->createUrl(['mch/group/goods/standard', 'goods_id' => $goods['id']]) ?>">阶级团设置</a>
+                        <form action="<?= $urlManager->createUrl(['mch/group/goods/index', 'Gid' => $goods['id']]) ?>" method="post" id="form">
+                            <a class="btn btn-sm btn-primary" href="javascript:void(0);" onclick="document.getElementById('form').submit();return false"">添加</a>
+                        </form>
+
                     </td>
                 </tr>
             <?php endforeach; ?>
