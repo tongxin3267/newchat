@@ -326,7 +326,7 @@ return [
                     ],
                     [
                         'name' => '页面管理',
-                        'is_menu' => true,
+                        'is_menu' => false,
                         'route' => '',
                         'children' => [
                             [
@@ -401,7 +401,7 @@ return [
                     ],
                     [
                         'name' => '淘宝CSV上传',
-                        'is_menu' => true,
+                        'is_menu' => false,
                         'route' => 'mch/goods/taobao-copy',
                     ],
                     [
@@ -462,7 +462,7 @@ return [
                             ],
                             [
                                 'name' => '预约订单',
-                                'is_menu' => true,
+                                'is_menu' => false,
 //'admin' => true,
                                 'route' => 'mch/princeorder/book/order/index',
                             ],
@@ -486,7 +486,7 @@ return [
                             ],
                             [
                                 'name' => '砍价订单',
-                                'is_menu' => true,
+                                'is_menu' => false,
 //'admin' => true,
                                 'route' => 'mch/princeorder/bargain/order/index',
                             ],
@@ -1282,7 +1282,7 @@ return [
                     [
                         'key' => 'book',
                         'name' => '预约',
-                        'is_menu' => true,
+                        'is_menu' => false,
                         'route' => 'mch/book/goods/index',
                         'children' => [
                             [
@@ -1335,7 +1335,7 @@ return [
                     [
                         'key' => 'fxhb',
                         'name' => '裂变拆红包',
-                        'is_menu' => true,
+                        'is_menu' => false,
                         'route' => 'mch/fxhb/index/setting',
                         'children' => [
                             [
@@ -1353,7 +1353,7 @@ return [
                     [
                         'key' => 'mch',
                         'name' => '商户管理',
-                        'is_menu' => true,
+                        'is_menu' => false,
                         'route' => 'mch/mch/index/index',
                         'icon' => 'icon-shanghu',
                         'children' => [
@@ -1599,7 +1599,7 @@ return [
                     [
                         'key' => 'bargain',
                         'name' => '砍价',
-                        'is_menu' => true,
+                        'is_menu' => false,
                         'icon' => 'icon-quanxianguanli',
                         'route' => '',
                         'children' => [
@@ -1712,7 +1712,7 @@ return [
                     [
                         'key' => 'prince_comment',
                         'name' => '评论采集',
-                        'is_menu' => true,
+                        'is_menu' => false,
                         'route' => '',
                         'children' => [
                             [

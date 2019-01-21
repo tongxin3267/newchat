@@ -389,19 +389,19 @@ class GoodsController extends Controller
 
             }else{
                 $data = [
-//                    'original_price' => $form->goods->original_price,
-//                    'price' => $form->goods->price,
-//                    'use_attr' => $form->goods->use_attr?$form->goods->use_attr:0,
-//                    'attr' => $form->goods->attr,
-//                    'colonel' => $form->goods->colonel,
-//                    'is_only' => $form->goods->is_only,
-//                    'is_more' => $form->goods->is_more,
-//                    'buy_limit' => $form->goods->buy_limit,
-//                    'group_num' => $form->goods->group_num,
-//                    'service' => $form->goods->service,
-//                    'grouptime' => $form->goods->grouptime,
+                    'original_price' => $form->goods->original_price,
+                    'price' => $form->goods->price,
+                    'use_attr' => $form->goods->use_attr?$form->goods->use_attr:0,
+                    'attr' => $form->goods->attr,
+                    'colonel' => $form->goods->colonel,
+                    'is_only' => $form->goods->is_only,
+                    'is_more' => $form->goods->is_more,
+                    'buy_limit' => $form->goods->buy_limit,
+                    'group_num' => $form->goods->group_num,
+                    'service' => $form->goods->service,
+                    'grouptime' => $form->goods->grouptime,
                     'limit_time' => $model['limit_time'] ? strtotime($model['limit_time']) : 0,
-//                    'one_buy_limit' => $form->goods->one_buy_limit
+                    'one_buy_limit' => $form->goods->one_buy_limit
                 ];
 //                var_dump($data);exit;
 
